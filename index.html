@@ -6,7 +6,7 @@
     <title>Database Verse</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    <style>
+    <!-- <style>
         header {
             background: linear-gradient(135deg, #1e3c72, #2a5298);
             color: white;
@@ -23,15 +23,20 @@
             font-size: 1.2rem;
             margin-top: 10px;
         }
-    </style>
+    </style> -->
     <link rel="icon" type="image/png" href="/icons8-favicon-16.png">
+ 
 
 </head>
 <body>
     <header>
+        
         <h1>Database Verse</h1>
         <p>Your ultimate guide to major databases</p>
+        <button id="theme-toggle">🌙 Dark Mode</button>
     </header>
+    
+    
     
     <nav>
         <ul>
@@ -69,13 +74,13 @@
                 <a href="https://www.oracle.com/database/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/IBM_DB2_logo.svg" alt="IBM Db2 Logo">
+                <img src="https://www.db2tutorial.com/wp-content/uploads/2019/03/db2-tutorial.png" alt="IBM Db2 Logo">
                 <h3>IBM Db2</h3>
                 <p>An enterprise-grade SQL database by IBM.</p>
                 <a href="https://www.ibm.com/db2" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/MariaDB_logo.svg" alt="MariaDB Logo">
+                <img src="https://avatars.githubusercontent.com/u/4739304?s=280&v=4" alt="MariaDB Logo">
                 <h3>MariaDB</h3>
                 <p>A community-developed fork of MySQL.</p>
                 <a href="https://mariadb.org/" target="_blank">Learn More</a>
@@ -93,31 +98,31 @@
                 <a href="https://www.mongodb.com/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://seeklogo.com/images/A/apache-cassandra-logo-7AE3B44A66-seeklogo.com.png" alt="Cassandra Logo">
+                <img src="https://cassandra.apache.org/assets/img/logo-white-r.png" alt="Cassandra Logo">
                 <h3>Apache Cassandra</h3>
                 <p>A highly scalable NoSQL database.</p>
                 <a href="https://cassandra.apache.org/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://firebase.google.com/images/brand-guidelines/logo-logomark.png" alt="Firebase Logo">
+                <img src="https://www.gstatic.com/devrel-devsite/prod/vdbb152dfd6ef5e309aa1d261d45f3fd443aed2691cbfba3f9f80f8a4012a0a8f/firebase/images/lockup.svg" alt="Firebase Logo">
                 <h3>Firebase</h3>
                 <p>Google's platform for mobile and web applications.</p>
                 <a href="https://firebase.google.com/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Amazon-DynamoDB-Logo.png" alt="DynamoDB Logo">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*SpqGm3t2gqbGx3Bz-UJpAQ.png" alt="DynamoDB Logo">
                 <h3>Amazon DynamoDB</h3>
                 <p>Serverless NoSQL database service from AWS.</p>
                 <a href="https://aws.amazon.com/dynamodb/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Redis_Logo.svg" alt="Redis Logo">
+                <img src="https://redis.io/wp-content/uploads/2024/04/Logotype.svg?auto=webp&quality=85,75&width=120" alt="Redis Logo">
                 <h3>Redis</h3>
                 <p>An in-memory key-value NoSQL database.</p>
                 <a href="https://redis.io/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Couchbase-logo.svg" alt="Couchbase Logo">
+                <img src="https://www.couchbase.com/wp-content/themes/couchbase-com/images/Logo-2000.svg" alt="Couchbase Logo">
                 <h3>Couchbase</h3>
                 <p>A distributed NoSQL database.</p>
                 <a href="https://www.couchbase.com/" target="_blank">Learn More</a>
@@ -129,19 +134,19 @@
         <h2>Graph Databases</h2>
         <div class="container">
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Neo4j-logo.svg" alt="Neo4j Logo">
+                <img src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Logo">
                 <h3>Neo4j</h3>
                 <p>A leading graph database for connected data.</p>
                 <a href="https://neo4j.com/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/TigerGraph_logo.png" alt="TigerGraph Logo">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMi0j-8EOGU2kKAD3Q4c2R9HEXQZ132W6uAQ&s" alt="TigerGraph Logo">
                 <h3>TigerGraph</h3>
                 <p>A scalable graph database platform.</p>
                 <a href="https://www.tigergraph.com/" target="_blank">Learn More</a>
             </div>
             <div class="card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/ArangoDB_Logo.svg" alt="ArangoDB Logo">
+                <img src="https://arangodb.com/wp-content/uploads/2023/07/logo.png" alt="ArangoDB Logo">
                 <h3>ArangoDB</h3>
                 <p>A multi-model graph database.</p>
                 <a href="https://www.arangodb.com/" target="_blank">Learn More</a>
@@ -149,8 +154,26 @@
         </div>
     </section>
     
+    <!-- <footer>
+        <p>&copy; 2025 Database Verse. All rights reserved.</p>
+    </footer> -->
+
     <footer>
         <p>&copy; 2025 Database Verse. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://twitter.com" target="_blank">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/695/small_2x/twitter-logo-twitter-icon-transparent-free-free-png.png" alt="Twitter">
+            </a>
+            <a href="https://linkedin.com" target="_blank">
+                <img src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2022/08/Linkedin-Logo-e1660320077673.png" alt="LinkedIn">
+            </a>
+            <a href="https://github.com" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+            </a>
+        </div>
     </footer>
+    
+    
+    
 </body>
 </html>

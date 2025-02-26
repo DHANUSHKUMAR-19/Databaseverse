@@ -1,20 +1,104 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+/* Default Light Mode Variables */
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --header-bg: white;
+    --header-text: #0056b3;
+    --subtitle-color: #555;
+    --nav-bg: #333;
+    --nav-text: white;
+    --nav-hover: #00d4ff;
+    --card-bg: white;
+    --card-shadow: rgba(0, 0, 0, 0.2);
+    --footer-bg: #333;
+    --footer-text: white;
+}
+
+/* Dark Mode Variables */
+.dark-mode {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --header-bg: #1e1e1e;
+    --header-text: #4dabf7;
+    --subtitle-color: #aaaaaa;
+    --nav-bg: #1e1e1e;
+    --nav-text: #e0e0e0;
+    --nav-hover: #4dabf7;
+    --card-bg: #1e1e1e;
+    --card-shadow: rgba(255, 255, 255, 0.1);
+    --footer-bg: #1e1e1e;
+    --footer-text: #e0e0e0;
+}
+
+/* Apply Theme */
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
+/* Header */
 header {
-    background: linear-gradient(135deg, #007bff, #00d4ff);
-    color: white;
+    width: 90%;
+    max-width: 1000px;
+    padding: 20px 30px;
+    background: var(--header-bg);
+    color: var(--text-color);
     text-align: center;
-    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0px 8px 20px var(--card-shadow);
+    margin: 40px auto 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
+header:hover {
+    transform: translateY(-4px);
+    box-shadow: 0px 10px 25px var(--card-shadow);
+}
+
+header h1 {
+    font-size: 2.8rem;
+    font-weight: 600;
+    margin: 0;
+    color: var(--header-text);
+}
+
+header p {
+    font-size: 1.1rem;
+    font-weight: 400;
+    margin-top: 6px;
+    color: var(--subtitle-color);
+    opacity: 0.9;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+    background: var(--header-text);
+    color: var(--header-bg);
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+#theme-toggle:hover {
+    background: var(--header-bg);
+    color: var(--header-text);
+    border: 1px solid var(--header-text);
+}
+
+/* Navigation */
 nav {
-    background: #333;
+    background: var(--nav-bg);
     padding: 10px 0;
     text-align: center;
 }
@@ -31,21 +115,23 @@ nav ul li {
 }
 
 nav ul li a {
-    color: white;
+    color: var(--nav-text);
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s;
 }
 
 nav ul li a:hover {
-    color: #00d4ff;
+    color: var(--nav-hover);
 }
 
+/* Sections */
 section {
     padding: 40px;
     text-align: center;
 }
 
+/* Cards */
 .container {
     display: flex;
     flex-wrap: wrap;
@@ -54,10 +140,10 @@ section {
 }
 
 .card {
-    background: white;
+    background: var(--card-bg);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px var(--card-shadow);
     width: 300px;
     text-align: center;
     transition: transform 0.3s, box-shadow 0.3s;
@@ -65,7 +151,7 @@ section {
 
 .card:hover {
     transform: scale(1.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 20px var(--card-shadow);
 }
 
 .card img {
@@ -74,6 +160,37 @@ section {
     margin-bottom: 10px;
 }
 
+/* Footer */
+/* footer {
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    text-align: center;
+    padding: 20px;
+    margin-top: 40px;
+} */
+/* footer {
+    background: #222;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+.footer-nav a {
+    color: #00d4ff;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.footer-nav a:hover {
+    text-decoration: underline;
+}
+
+.social-links img {
+    width: 24px;
+    margin: 0 5px;
+} */
+
 footer {
     background: #333;
     color: white;
@@ -81,3 +198,25 @@ footer {
     padding: 20px;
     margin-top: 40px;
 }
+
+.social-links {
+    margin-top: 10px;
+}
+
+.social-links a {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1); /* Makes icons white for better visibility */
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-links img:hover {
+    transform: scale(1.2);
+}
+
+
