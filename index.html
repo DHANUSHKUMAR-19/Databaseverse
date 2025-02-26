@@ -3,39 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Database Verse</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <style>
+        header {
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            font-family: Arial, sans-serif;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        header h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+        header p {
+            font-size: 1.2rem;
+            margin-top: 10px;
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Hello, I'm Dhanush </h1>
-        <p>A passionate developer creating awesome things.</p>
+        <h1>Database Verse</h1>
+        <p>Your ultimate guide to major databases</p>
     </header>
     
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project One</h3>
-            <p>A brief description of Project One.</p>
-            <a href="#">View Project</a>
-        </div>
-        <div class="project">
-            <h3>Project Two</h3>
-            <p>A brief description of Project Two.</p>
-            <a href="#">View Project</a>
-        </div>
-        <div class="project">
-            <h3>Project Three</h3>
-            <p>A brief description of Project Three.</p>
-            <a href="#">View Project</a>
+    <nav>
+        <ul>
+            <li><a href="#sql">SQL Databases</a></li>
+            <li><a href="#nosql">NoSQL Databases</a></li>
+            <li><a href="#graph">Graph Databases</a></li>
+        </ul>
+    </nav>
+    
+    <section id="sql">
+        <h2>SQL Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" alt="MySQL Logo">
+                <h3>MySQL</h3>
+                <p>A popular open-source relational database.</p>
+                <a href="https://www.mysql.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL Logo">
+                <h3>PostgreSQL</h3>
+                <p>A powerful, open-source object-relational database system.</p>
+                <a href="https://www.postgresql.org/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Server Logo">
+                <h3>SQL Server</h3>
+                <p>Microsoft's relational database management system.</p>
+                <a href="https://www.microsoft.com/en-us/sql-server" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://logodix.com/logo/2006481.png" alt="Oracle Logo">
+                <h3>Oracle Database</h3>
+                <p>A multi-model database for enterprise applications.</p>
+                <a href="https://www.oracle.com/database/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/IBM_DB2_logo.svg" alt="IBM Db2 Logo">
+                <h3>IBM Db2</h3>
+                <p>An enterprise-grade SQL database by IBM.</p>
+                <a href="https://www.ibm.com/db2" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/99/MariaDB_logo.svg" alt="MariaDB Logo">
+                <h3>MariaDB</h3>
+                <p>A community-developed fork of MySQL.</p>
+                <a href="https://mariadb.org/" target="_blank">Learn More</a>
+            </div>
         </div>
     </section>
-
-    <footer>
-        <p>Connect with me:</p>
-        <a href="https://github.com/DHANUSHKUMAR-19">GitHub</a> | <a href="">LinkedIn</a>
-    </footer>
     
-    <script src="script.js"></script>
+    <section id="nosql">
+        <h2>NoSQL Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/45/MongoDB-Logo.svg" alt="MongoDB Logo">
+                <h3>MongoDB</h3>
+                <p>A document-oriented NoSQL database.</p>
+                <a href="https://www.mongodb.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/5/5e/Apache_Cassandra_logo.svg" alt="Cassandra Logo">
+                <h3>Apache Cassandra</h3>
+                <p>A highly scalable NoSQL database.</p>
+                <a href="https://cassandra.apache.org/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://firebase.google.com/images/brand-guidelines/logo-logomark.png" alt="Firebase Logo">
+                <h3>Firebase</h3>
+                <p>Google's platform for mobile and web applications.</p>
+                <a href="https://firebase.google.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/d/d5/Amazon-DynamoDB-Logo.png" alt="DynamoDB Logo">
+                <h3>Amazon DynamoDB</h3>
+                <p>Serverless NoSQL database service from AWS.</p>
+                <a href="https://aws.amazon.com/dynamodb/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Redis_Logo.svg" alt="Redis Logo">
+                <h3>Redis</h3>
+                <p>An in-memory key-value NoSQL database.</p>
+                <a href="https://redis.io/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/bd/Couchbase-logo.svg" alt="Couchbase Logo">
+                <h3>Couchbase</h3>
+                <p>A distributed NoSQL database.</p>
+                <a href="https://www.couchbase.com/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="graph">
+        <h2>Graph Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/3/3d/Neo4j-logo.svg" alt="Neo4j Logo">
+                <h3>Neo4j</h3>
+                <p>A leading graph database for connected data.</p>
+                <a href="https://neo4j.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/TigerGraph_logo.png" alt="TigerGraph Logo">
+                <h3>TigerGraph</h3>
+                <p>A scalable graph database platform.</p>
+                <a href="https://www.tigergraph.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/ArangoDB_Logo.svg" alt="ArangoDB Logo">
+                <h3>ArangoDB</h3>
+                <p>A multi-model graph database.</p>
+                <a href="https://www.arangodb.com/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <p>&copy; 2025 Database Verse. All rights reserved.</p>
+    </footer>
 </body>
 </html>
