@@ -25,7 +25,47 @@
         }
     </style> -->
     <link rel="icon" type="image/png" href="/icons8-favicon-16.png">
- 
+    <script>
+
+        var userID = window.localStorage.getItem("userID");
+        
+        window.adobeDataLayer = window.adobeDataLayer || [];
+        window.adobeDataLayer.push({
+                        "event":"pageView",
+                        "page":{
+                            "pageName": "Databaseverse - Home",
+                            "siteSection": "Home",
+                            "siteSubsection": "Home",
+                            },
+                        "user":{
+                            "userID" : "1",
+                            "loginStatus" : "Loggedin"
+                        }
+                    });
+        // function ctaClickEvent(_ctaName,_ctaPos){
+        //     window.geometData.push({
+        //                 "event":"ctaClick",
+        //                 "page":{
+        //                     // "pageName": "Home/Men:FineApparel/Women:FineApparel/Geometrix ChargeCard",
+        //                     "pageName":"Home",
+        //                     "siteSection": "Home",
+        //                     "siteSubsection": "Home",
+        //                     },
+        //                 "user":{
+        //                     "userID" : "1",
+        //                     "loginStatus" : "Loggedin"
+        //                 },
+        //                 "cta":{
+        //                     "ctaName":_ctaName,
+        //                     "ctaPosition":_ctaPos
+        //                 }
+        //             });
+        // }
+    
+    
+    </script>
+    
+    <script src="https://assets.adobedtm.com/6a9bc2d85574/b8443669e153/launch-eb0b239af1a2-development.min.js" async></script>
 
 </head>
 <body>
