@@ -6,8 +6,9 @@ phases:
       - echo "Nothing to install for static site"
   build:
     commands:
-      - echo "Build started on `date`"
+      - echo "Build started on $(date)"
       - echo "No build steps required for static files"
+
 artifacts:
   files:
     - '**/*'
