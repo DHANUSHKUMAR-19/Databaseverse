@@ -3,7 +3,7 @@ version: 0.2
 phases:
   install:
     commands:
-      - echo "Installing dependencies (if any)"
+      - echo "Nothing to install for static site"
   build:
     commands:
       - echo "Build started on $(date)"
@@ -11,11 +11,5 @@ phases:
 
 artifacts:
   files:
-    - index.html
-    - style.css
-    - script.js
-    - icons8-favicon-16.png
-    - appspec.yml
-    - install_dependencies
-    - start_server
-    - stop_server
+    - '**/*'
+  discard-paths: no
