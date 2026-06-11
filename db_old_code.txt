@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- SEO Part -->
+    <!-- SEO Metadata -->
+    <title>DatabaseVerse - The Ultimate Database Guide | SQL & NoSQL</title>
+    <meta name="description" content="DatabaseVerse provides in-depth guides, comparisons, and best practices for SQL, NoSQL, and Graph databases. Learn, compare, and choose the best database for your project.">
+    <meta name="keywords" content="databases, SQL, NoSQL, MySQL, PostgreSQL, MongoDB, database tutorials, database comparisons">
+    <meta name="author" content="DatabaseVerse Team">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph (For Facebook, LinkedIn) -->
+    <meta property="og:title" content="DatabaseVerse - The Ultimate Database Guide">
+    <meta property="og:description" content="Find the best database for your needs with our expert guides and comparisons.">
+    <meta property="og:image" content="https://www.databaseverse.com/images/preview.jpg">
+    <meta property="og:url" content="https://www.databaseverse.com">
+    <meta property="og:type" content="website">
+    
+    <!-- Twitter Card (For Twitter) -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DatabaseVerse - Your Guide to Databases">
+    <meta name="twitter:description" content="Compare SQL, NoSQL, and Graph databases with expert insights.">
+    <meta name="twitter:image" content="https://www.databaseverse.com/images/preview.jpg">
+    
+    <!-- Schema Markup (JSON-LD for Google Rich Results) -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "DatabaseVerse",
+        "url": "https://www.databaseverse.com",
+        "description": "Learn everything about databases, including SQL, NoSQL, and Graph databases.",
+        "publisher": {
+            "@type": "Organization",
+            "name": "DatabaseVerse",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.databaseverse.com/images/logo.png"
+            }
+        }
+    }
+    </script>
+
+<!-- SEO -->
+
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8469718621464285"
+     crossorigin="anonymous"></script>
+    
+    <link rel="icon" type="image/png" href="/icons8-favicon-16.png">
+    <script>
+
+        var userID = window.localStorage.getItem("userID");
+        
+        window.adobeDataLayer = window.adobeDataLayer || [];
+        window.adobeDataLayer.push({
+                        "event":"pageView",
+                        "page":{
+                            "pageName": "Databaseverse - Home",
+                            "siteSection": "Home",
+                            "siteSubsection": "Home",
+                            },
+                        "user":{
+                            "userID" : "1",
+                            "loginStatus" : "Non Logged In",
+                        }
+                    });
+    
+    
+    </script>
+    
+    <script src="https://assets.adobedtm.com/6a9bc2d85574/b8443669e153/launch-eb0b239af1a2-development.min.js" async></script>
+
+</head>
+<body>
+    <header>
+        
+        <h1>Database Verse</h1>
+        <p>Your ultimate guide to major databases</p>
+        <button id="theme-toggle">🌙 Dark Mode</button>
+    </header>
+    
+    
+    
+    <nav>
+        <ul>
+            <li><a href="#sql">SQL Databases</a></li>
+            <li><a href="#nosql">NoSQL Databases</a></li>
+            <li><a href="#graph">Graph Databases</a></li>
+        </ul>
+    </nav>
+    
+    <section id="sql">
+        <h2>SQL Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/MySQL_logo.svg" alt="MySQL Logo">
+                <h3>MySQL</h3>
+                <p>A popular open-source relational database.</p>
+                <a href="https://www.mysql.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg" alt="PostgreSQL Logo">
+                <h3>PostgreSQL</h3>
+                <p>A powerful, open-source object-relational database system.</p>
+                <a href="https://www.postgresql.org/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/8/87/Sql_data_base_with_logo.png" alt="SQL Server Logo">
+                <h3>SQL Server</h3>
+                <p>Microsoft's relational database management system.</p>
+                <a href="https://www.microsoft.com/en-us/sql-server" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://logodix.com/logo/2006481.png" alt="Oracle Logo">
+                <h3>Oracle Database</h3>
+                <p>A multi-model database for enterprise applications.</p>
+                <a href="https://www.oracle.com/database/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://www.db2tutorial.com/wp-content/uploads/2019/03/db2-tutorial.png" alt="IBM Db2 Logo">
+                <h3>IBM Db2</h3>
+                <p>An enterprise-grade SQL database by IBM.</p>
+                <a href="https://www.ibm.com/db2" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://avatars.githubusercontent.com/u/4739304?s=280&v=4" alt="MariaDB Logo">
+                <h3>MariaDB</h3>
+                <p>A community-developed fork of MySQL.</p>
+                <a href="https://mariadb.org/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="nosql">
+        <h2>NoSQL Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://1000logos.net/wp-content/uploads/2020/08/MongoDB-Logo.png" alt="MongoDB Logo">
+                <h3>MongoDB</h3>
+                <p>A document-oriented NoSQL database.</p>
+                <a href="https://www.mongodb.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://cassandra.apache.org/assets/img/logo-white-r.png" alt="Cassandra Logo">
+                <h3>Apache Cassandra</h3>
+                <p>A highly scalable NoSQL database.</p>
+                <a href="https://cassandra.apache.org/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://www.gstatic.com/devrel-devsite/prod/vdbb152dfd6ef5e309aa1d261d45f3fd443aed2691cbfba3f9f80f8a4012a0a8f/firebase/images/lockup.svg" alt="Firebase Logo">
+                <h3>Firebase</h3>
+                <p>Google's platform for mobile and web applications.</p>
+                <a href="https://firebase.google.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://miro.medium.com/v2/resize:fit:1400/1*SpqGm3t2gqbGx3Bz-UJpAQ.png" alt="DynamoDB Logo">
+                <h3>Amazon DynamoDB</h3>
+                <p>Serverless NoSQL database service from AWS.</p>
+                <a href="https://aws.amazon.com/dynamodb/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://redis.io/wp-content/uploads/2024/04/Logotype.svg?auto=webp&quality=85,75&width=120" alt="Redis Logo">
+                <h3>Redis</h3>
+                <p>An in-memory key-value NoSQL database.</p>
+                <a href="https://redis.io/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://www.couchbase.com/wp-content/themes/couchbase-com/images/Logo-2000.svg" alt="Couchbase Logo">
+                <h3>Couchbase</h3>
+                <p>A distributed NoSQL database.</p>
+                <a href="https://www.couchbase.com/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+    <section id="graph">
+        <h2>Graph Databases</h2>
+        <div class="container">
+            <div class="card">
+                <img src="https://dist.neo4j.com/wp-content/uploads/20230926084108/Logo_FullColor_RGB_TransBG.svg" alt="Neo4j Logo">
+                <h3>Neo4j</h3>
+                <p>A leading graph database for connected data.</p>
+                <a href="https://neo4j.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMi0j-8EOGU2kKAD3Q4c2R9HEXQZ132W6uAQ&s" alt="TigerGraph Logo">
+                <h3>TigerGraph</h3>
+                <p>A scalable graph database platform.</p>
+                <a href="https://www.tigergraph.com/" target="_blank">Learn More</a>
+            </div>
+            <div class="card">
+                <img src="https://arangodb.com/wp-content/uploads/2023/07/logo.png" alt="ArangoDB Logo">
+                <h3>ArangoDB</h3>
+                <p>A multi-model graph database.</p>
+                <a href="https://www.arangodb.com/" target="_blank">Learn More</a>
+            </div>
+        </div>
+    </section>
+    
+
+    <footer>
+        <p>&copy; 2025 Database Verse. All rights reserved.</p>
+        <div class="social-links">
+            <a href="https://x.com/dhanushbangady?s=21&t=5wENA6YG9bDJAuuJVBSsLw" target="_blank">
+                <img src="https://static.vecteezy.com/system/resources/thumbnails/018/930/695/small_2x/twitter-logo-twitter-icon-transparent-free-free-png.png" alt="Twitter">
+            </a>
+            <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank">
+                <img src="https://cdn.uconnectlabs.com/wp-content/uploads/sites/46/2022/08/Linkedin-Logo-e1660320077673.png" alt="LinkedIn">
+            </a>
+            <a href="https://github.com/DHANUSHKUMAR-19" target="_blank">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/9/91/Octicons-mark-github.svg" alt="GitHub">
+            </a>
+        </div>
+    </footer>
+    
+     
+</body>
+</html>
