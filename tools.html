@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Database Developer Tools | Schema Designer, Connection Builder, Regex, JSON Path — DatabaseVerse</title>
+<meta name="description" content="Free developer tools: SQL schema designer with DDL generation, database connection string builder, regex tester with live highlighting, JSON path evaluator, data type cheatsheet, and index advisor." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.databaseverse.com/tools.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/tools.css" />
+<style>
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--cyan);color:var(--bg);padding:.5rem 1rem;border-radius:0 0 8px 0;font-size:.85rem;font-weight:600;}
+  .skip-link:focus{left:0;}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>Database<span>Verse</span></a>
+  <ul class="nav-pages" id="navPages">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html" class="active">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="playground.html" class="nav-cta">Playground</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-wrap" id="main-content">
+
+  <div class="tools-hero">
+    <h1>Developer <span style="color:var(--cyan)">Tools</span></h1>
+    <p>Schema designer, connection string builder, regex tester, JSON path evaluator, data type reference, and index advisor — all in your browser.</p>
+  </div>
+
+  <!-- TOOL NAV -->
+  <nav class="tool-nav" aria-label="Tool selector">
+    <div class="tool-nav-item active" data-tool="tool-schema">    <span class="tool-icon">&#9881;</span> Schema Designer</div>
+    <div class="tool-nav-item"        data-tool="tool-connstr">   <span class="tool-icon">&#128279;</span> Connection String</div>
+    <div class="tool-nav-item"        data-tool="tool-regex">     <span class="tool-icon">&#128269;</span> Regex Tester</div>
+    <div class="tool-nav-item"        data-tool="tool-jsonpath">  <span class="tool-icon">&#123; &#125;</span> JSON Path</div>
+    <div class="tool-nav-item"        data-tool="tool-datatypes"> <span class="tool-icon">&#128200;</span> Data Types</div>
+    <div class="tool-nav-item"        data-tool="tool-indexadv">  <span class="tool-icon">&#9889;</span> Index Advisor</div>
+  </nav>
+
+  <!-- ═══════════════════════ SCHEMA DESIGNER ═══════════════════════ -->
+  <div class="tool-panel active" id="tool-schema">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#9881;</span>
+        <div class="tool-header-text">
+          <h2>SQL Schema Designer</h2>
+          <p>Build your table visually. Get production-ready DDL for PostgreSQL, MySQL, or SQLite — with constraints, triggers, and example INSERT.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <!-- Left: form -->
+        <div class="tool-col">
+          <div class="tool-col-title">Table Configuration</div>
+          <label class="field-label">Table Name</label>
+          <input type="text" id="schTableName" class="field-input" placeholder="e.g. users" style="margin-bottom:.75rem" />
+          <label class="field-label">Dialect</label>
+          <select id="schDialect" class="field-select" style="margin-bottom:.75rem">
+            <option value="postgres">PostgreSQL</option>
+            <option value="mysql">MySQL</option>
+            <option value="sqlite">SQLite</option>
+          </select>
+
+          <div class="schema-options">
+            <label class="schema-checkbox"><input type="checkbox" id="schIfNotExists" /> IF NOT EXISTS</label>
+            <label class="schema-checkbox"><input type="checkbox" id="schTimestamps" /> Auto created_at / updated_at</label>
+          </div>
+
+          <div class="tool-col-title" style="margin-top:.5rem">Columns &nbsp;<span style="color:var(--text-muted);font-weight:400">PK=Primary Key &nbsp; NN=Not Null &nbsp; UQ=Unique</span></div>
+          <div class="schema-field-list" id="schFields"></div>
+          <button class="btn btn-ghost btn-sm" onclick="addSchField()" style="width:100%;margin-top:.25rem;border-style:dashed">+ Add Column</button>
+          <button class="btn btn-cyan btn-md" onclick="generateDDL()" style="width:100%;margin-top:.75rem">Generate SQL</button>
+        </div>
+        <!-- Right: output -->
+        <div class="tool-col">
+          <div class="tool-col-title" style="display:flex;justify-content:space-between;align-items:center">
+            Generated DDL
+            <button class="code-pane-copy btn btn-sm btn-ghost" id="schemaCopyBtn" onclick="copyDDL()">copy</button>
+          </div>
+          <div class="code-pane" style="flex:1">
+            <pre id="schemaOutput" class="code-pane-body" style="min-height:360px;"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ CONNECTION STRING ═══════════════════════ -->
+  <div class="tool-panel" id="tool-connstr">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#128279;</span>
+        <div class="tool-header-text">
+          <h2>Connection String Builder</h2>
+          <p>Generate production-ready connection strings for PostgreSQL, MySQL, MongoDB, Redis, and SQL Server.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">Configuration</div>
+          <div class="conn-form">
+            <div>
+              <label class="field-label">Database Engine</label>
+              <select id="connDB" class="field-select">
+                <option value="postgres">PostgreSQL</option>
+                <option value="mysql">MySQL</option>
+                <option value="mongodb">MongoDB</option>
+                <option value="redis">Redis</option>
+                <option value="mssql">SQL Server</option>
+              </select>
+            </div>
+            <div class="conn-row">
+              <div style="flex:1">
+                <label class="field-label">Host</label>
+                <input type="text" id="connHost" class="field-input" value="localhost" />
+              </div>
+              <div class="conn-port">
+                <label class="field-label">Port</label>
+                <input type="text" id="connPort" class="field-input" value="5432" />
+              </div>
+            </div>
+            <div>
+              <label class="field-label">Database Name</label>
+              <input type="text" id="connName" class="field-input" value="mydb" />
+            </div>
+            <div class="conn-row">
+              <div style="flex:1">
+                <label class="field-label">Username</label>
+                <input type="text" id="connUser" class="field-input" value="postgres" />
+              </div>
+              <div style="flex:1">
+                <label class="field-label">Password</label>
+                <input type="password" id="connPass" class="field-input" value="password" />
+              </div>
+            </div>
+            <label class="schema-checkbox"><input type="checkbox" id="connSSL" /> Enable SSL / TLS</label>
+          </div>
+        </div>
+        <div class="tool-col">
+          <div class="tool-col-title">Generated Connection String</div>
+          <div class="conn-output-wrap">
+            <div id="connDisplay" class="conn-string-display">postgresql://postgres:password@localhost:5432/mydb</div>
+            <button class="btn btn-sm btn-ghost conn-copy-btn" onclick="copyConnString()">Copy</button>
+          </div>
+          <div class="conn-examples" style="margin-top:1.5rem">
+            <div class="conn-example-title">Framework snippets</div>
+            <div id="connSnippets" style="font-family:var(--mono);font-size:0.76rem;color:var(--text-dim);margin-top:.5rem;line-height:1.9">
+              <!-- Populated by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ REGEX TESTER ═══════════════════════ -->
+  <div class="tool-panel" id="tool-regex">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#128269;</span>
+        <div class="tool-header-text">
+          <h2>Regex Tester</h2>
+          <p>Live regex testing with match highlighting, group extraction, and match count. Useful for SQL REGEXP, validation patterns, and parsing.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">Pattern</div>
+          <div class="regex-input-row">
+            <span class="regex-slash">/</span>
+            <input type="text" id="regexPattern" class="regex-main" placeholder="[a-z]+" oninput="testRegex()" />
+            <span class="regex-slash">/</span>
+            <input type="text" id="regexFlags" class="regex-flags" value="gi" maxlength="6" oninput="testRegex()" title="Flags: g i m s u y" />
+          </div>
+          <div class="tool-col-title" style="margin-top:1rem">Test String</div>
+          <textarea id="regexTest" class="editor-textarea" rows="6" style="border:1px solid var(--border);border-radius:var(--r-sm);min-height:140px"
+            placeholder="Paste text to test against your regex..." oninput="testRegex()">Hello World 123
+user@example.com
+2024-01-15
+PostgreSQL vs MySQL
+The quick brown fox jumps over the lazy dog</textarea>
+          <div class="regex-stats" id="regexStats"></div>
+
+          <div class="tool-col-title" style="margin-top:1rem">Common Patterns</div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem">
+            <span class="example-pill" onclick="setRegex('[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}','gi')">Email</span>
+            <span class="example-pill" onclick="setRegex('https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\\.[a-zA-Z0-9()]{1,6}\\b[-a-zA-Z0-9()@:%_+.~#?&//=]*','gi')">URL</span>
+            <span class="example-pill" onclick="setRegex('\\d{4}-\\d{2}-\\d{2}','g')">ISO Date</span>
+            <span class="example-pill" onclick="setRegex('^[+]?[(]?[0-9]{3}[)]?[-\\s.]?[0-9]{3}[-\\s.]?[0-9]{4,6}$','gm')">Phone</span>
+            <span class="example-pill" onclick="setRegex('[A-Z][a-z]+','g')">Title Case Word</span>
+            <span class="example-pill" onclick="setRegex('\\b\\d+\\.?\\d*\\b','g')">Numbers</span>
+            <span class="example-pill" onclick="setRegex('SELECT|FROM|WHERE|JOIN|GROUP BY|ORDER BY','gi')">SQL Keywords</span>
+          </div>
+        </div>
+        <div class="tool-col">
+          <div class="tool-col-title">Highlighted Matches</div>
+          <div id="regexHighlight" class="regex-test-area" style="min-height:180px"></div>
+          <div class="tool-col-title" style="margin-top:1rem">Match Details</div>
+          <div id="regexMatches" class="regex-matches-list" style="max-height:200px;overflow-y:auto"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ JSON PATH ═══════════════════════ -->
+  <div class="tool-panel" id="tool-jsonpath">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#123; &#125;</span>
+        <div class="tool-header-text">
+          <h2>JSON Path Tester</h2>
+          <p>Evaluate JSONPath expressions against JSON data. Supports wildcards, array indexing, filters, and recursive descent (..key).</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">JSON Input</div>
+          <textarea id="jsonInput" class="editor-textarea" rows="12" style="border:1px solid var(--border);border-radius:var(--r-sm);min-height:200px" oninput="renderJsonHighlight()" spellcheck="false"></textarea>
+          <div class="tool-col-title" style="margin-top:1rem">JSONPath Expression</div>
+          <div style="display:flex;gap:.5rem">
+            <input type="text" id="jsonPath" class="field-input" placeholder="$.users[*].name" oninput="evalJsonPath()" />
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.5rem">
+            <span class="example-pill" onclick="setJsonPath('$.users[*].name')">All names</span>
+            <span class="example-pill" onclick="setJsonPath('$.users[0]')">First user</span>
+            <span class="example-pill" onclick="setJsonPath('$.users[?(@.role==\"admin\")]')">Filter admins</span>
+            <span class="example-pill" onclick="setJsonPath('$.users.length')">Array length</span>
+            <span class="example-pill" onclick="setJsonPath('$..scores')">Deep scan</span>
+            <span class="example-pill" onclick="setJsonPath('$.meta')">Nested object</span>
+          </div>
+        </div>
+        <div class="tool-col">
+          <div class="tool-col-title">JSON Preview</div>
+          <pre id="jsonDisplay" class="json-display" style="max-height:220px;overflow:auto"></pre>
+          <div class="tool-col-title" style="margin-top:1rem">Result</div>
+          <div id="jsonPathResult" style="font-family:var(--mono);font-size:.78rem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ DATA TYPES ═══════════════════════ -->
+  <div class="tool-panel" id="tool-datatypes">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#128200;</span>
+        <div class="tool-header-text">
+          <h2>Data Type Cheatsheet</h2>
+          <p>Complete data type reference for PostgreSQL, MySQL, and SQLite — with storage sizes, ranges, and when to use each type.</p>
+        </div>
+      </div>
+      <div class="tool-body single" style="padding:1.5rem">
+        <div class="dt-tabs">
+          <div class="dt-tab active" data-dialect="postgres">PostgreSQL</div>
+          <div class="dt-tab"       data-dialect="mysql">MySQL</div>
+          <div class="dt-tab"       data-dialect="sqlite">SQLite</div>
+        </div>
+        <div id="dtTable" style="overflow-x:auto"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════ INDEX ADVISOR ═══════════════════════ -->
+  <div class="tool-panel" id="tool-indexadv">
+    <div class="tool-card">
+      <div class="tool-header">
+        <span class="tool-header-icon">&#9889;</span>
+        <div class="tool-header-text">
+          <h2>Index Advisor</h2>
+          <p>Paste a SQL query and get index recommendations, warnings about common anti-patterns, and optimization tips.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="advisor-form">
+            <div>
+              <label class="field-label">SQL Query</label>
+              <textarea id="advQuery" class="editor-textarea" rows="8" style="border:1px solid var(--border);border-radius:var(--r-sm);min-height:160px" spellcheck="false"
+                placeholder="SELECT u.name, o.amount&#10;FROM users u&#10;JOIN orders o ON o.user_id = u.id&#10;WHERE u.country = 'US' AND o.status = 'completed'&#10;ORDER BY o.amount DESC&#10;LIMIT 10;"></textarea>
+            </div>
+            <div style="display:flex;gap:.5rem;align-items:flex-end">
+              <div style="flex:1">
+                <label class="field-label">Table Name (optional)</label>
+                <input type="text" id="advTable" class="field-input" placeholder="users" />
+              </div>
+              <div style="width:130px">
+                <label class="field-label">Dialect</label>
+                <select id="advDialect" class="field-select">
+                  <option value="postgres">PostgreSQL</option>
+                  <option value="mysql">MySQL</option>
+                  <option value="sqlite">SQLite</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-cyan btn-md" id="adviseBtn" onclick="runIndexAdvisor()">Analyze Query</button>
+          </div>
+        </div>
+        <div class="tool-col">
+          <div class="tool-col-title">Recommendations</div>
+          <div id="advResult" class="advisor-result" style="min-height:240px">
+            <div class="advisor-info">ℹ Enter a SQL query on the left and click Analyze.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<div class="newsletter-strip">
+  <h2>Stay Sharp on Databases</h2>
+  <p>One email per week. No spam.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email" />
+    <button type="button">Subscribe</button>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="footer-left">© 2025 <a href="index.html">DatabaseVerse</a></div>
+  <ul class="footer-center">
+    <li><a href="index.html">Databases</a></li><li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li><li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener">𝕏</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener">GH</a>
+  </div>
+</footer>
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+
+<script>
+// Inline helpers for onclick
+function setRegex(pattern, flags) {
+  document.getElementById('regexPattern').value = pattern;
+  if (flags) document.getElementById('regexFlags').value = flags;
+  if (window.testRegex) testRegex();
+}
+function setJsonPath(path) {
+  document.getElementById('jsonPath').value = path;
+  if (window.evalJsonPath) evalJsonPath();
+}
+</script>
+<script type="module">
+import { initNav, initNewsletter } from './js/nav.js';
+import { initSchemaDesigner, initConnBuilder, initRegexTester, initJsonPath, initDataTypes, initIndexAdvisor, initToolNav } from './js/tools.js';
+
+initNav();
+initNewsletter();
+initToolNav();
+initSchemaDesigner();
+initConnBuilder();
+initRegexTester();
+initJsonPath();
+initDataTypes();
+initIndexAdvisor();
+
+// Wire connection string snippet display
+const connSnippets = document.getElementById('connSnippets');
+const origBuild = window.buildConnString;
+window.buildConnString = () => {
+  if (origBuild) origBuild();
+  const str = document.getElementById('connDisplay')?.textContent || '';
+  const db  = document.getElementById('connDB')?.value || 'postgres';
+  const snippets = {
+    postgres: [
+      `<b>Python (psycopg2)</b>\nconn = psycopg2.connect("${str}")`,
+      `<b>Node.js (pg)</b>\nnew Pool({ connectionString: "${str}" })`,
+      `<b>Prisma</b>\nDATABASE_URL="${str}"`,
+    ],
+    mysql: [
+      `<b>Python (mysql-connector)</b>\nmysql.connector.connect(host="...",user="...",password="...",database="...")`,
+      `<b>Node.js (mysql2)</b>\nmysql.createPool({ uri: "${str}" })`,
+    ],
+    mongodb: [
+      `<b>Python (pymongo)</b>\nMongoClient("${str}")`,
+      `<b>Node.js (mongoose)</b>\nmongoose.connect("${str}")`,
+    ],
+    redis: [
+      `<b>Python (redis-py)</b>\nredis.from_url("${str}")`,
+      `<b>Node.js (ioredis)</b>\nnew Redis("${str}")`,
+    ],
+    mssql: [
+      `<b>Python (pyodbc)</b>\npyodbc.connect("DRIVER={ODBC Driver 18};SERVER=...;DATABASE=...;UID=...;PWD=...")`,
+      `<b>Node.js (mssql)</b>\nsql.connect({ connectionString: "..." })`,
+    ],
+  };
+  if (connSnippets) connSnippets.innerHTML = (snippets[db]||[]).map(s=>`<div style="margin-bottom:.75rem;border:1px solid var(--border);border-radius:var(--r-sm);padding:.6rem .85rem;background:var(--bg)">${s.replace(/\n/g,'<br/>')}</div>`).join('');
+};
+window.buildConnString();
+</script>
+</body>
+</html>

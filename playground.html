@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Live Database Playground | SQL, MongoDB, Redis — DatabaseVerse</title>
+<meta name="description" content="Run real SQL queries in your browser via SQLite WASM. Simulate MongoDB aggregation pipelines and Redis commands. No signup, no server." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.databaseverse.com/playground.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/playground.css" />
+<style>
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--cyan);color:var(--bg);padding:.5rem 1rem;border-radius:0 0 8px 0;font-size:.85rem;font-weight:600;}
+  .skip-link:focus{left:0;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>Database<span>Verse</span></a>
+  <ul class="nav-pages" id="navPages">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html" class="active">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-wrap" id="main-content">
+
+  <!-- HERO -->
+  <div class="playground-hero">
+    <div class="hero-badge" style="display:inline-flex;align-items:center;gap:.5rem;background:var(--bg3);border:1px solid var(--border);border-radius:100px;padding:.3rem 1rem;font-size:.7rem;font-family:var(--mono);color:var(--green);margin-bottom:1.5rem;letter-spacing:.06em;">
+      <span style="width:7px;height:7px;background:var(--green);border-radius:50%;display:inline-block;animation:pulse-dot 2s infinite;"></span>
+      LIVE ENGINE — Runs in your browser
+    </div>
+    <h1>Database <span style="color:var(--cyan)">Playground</span></h1>
+    <p>Real SQLite via WebAssembly. MongoDB aggregation pipeline simulator. Full Redis command set. No signup, no server, no waiting.</p>
+  </div>
+
+  <!-- ENGINE TABS -->
+  <div class="engine-tabs" role="tablist" aria-label="Database engine selector">
+    <div class="engine-tab active" data-engine="sql" role="tab" aria-selected="true" tabindex="0">
+      <span class="tab-dot tab-dot-sql"></span> SQLite (Real WASM)
+    </div>
+    <div class="engine-tab" data-engine="mongo" role="tab" aria-selected="false" tabindex="-1">
+      <span class="tab-dot tab-dot-mongo"></span> MongoDB Simulator
+    </div>
+    <div class="engine-tab" data-engine="redis" role="tab" aria-selected="false" tabindex="-1">
+      <span class="tab-dot tab-dot-redis"></span> Redis Simulator
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       SQL PANEL
+       ═══════════════════════════════════════ -->
+  <div class="editor-area" data-engine-panel="sql">
+    <div class="editor-layout">
+      <!-- Left: Editor -->
+      <div class="editor-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">SQL Editor</span>
+          <div class="pane-actions">
+            <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted)">Ctrl+Enter to run</span>
+            <button class="btn btn-sm btn-ghost" onclick="clearSql()">Clear</button>
+            <button class="btn btn-sm btn-green" onclick="runSQL()">&#9654; Run</button>
+          </div>
+        </div>
+        <textarea id="editor-sql" class="editor-textarea" spellcheck="false"
+          placeholder="-- Tables: users, orders, products&#10;-- Try: SELECT * FROM users LIMIT 5;&#10;-- Ctrl+Enter to run"></textarea>
+        <div class="example-pills">
+          <span class="example-pill-label">Quick start:</span>
+          <span class="example-pill" data-example="basic"  data-engine-panel="sql">SELECT *</span>
+          <span class="example-pill" data-example="join"   data-engine-panel="sql">JOIN</span>
+          <span class="example-pill" data-example="window" data-engine-panel="sql">Window Fn</span>
+          <span class="example-pill" data-example="cte"    data-engine-panel="sql">CTE</span>
+          <span class="example-pill" data-example="subquery" data-engine-panel="sql">Subquery</span>
+          <span class="example-pill" data-example="create" data-engine-panel="sql">DDL</span>
+        </div>
+        <!-- Schema sidebar -->
+        <div class="schema-sidebar">
+          <div class="schema-sidebar-title">Schema</div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">&#9654; users</div>
+            <ul class="schema-col-list">
+              <li>id <span class="schema-col-type">INTEGER PK</span></li>
+              <li>name <span class="schema-col-type">TEXT</span></li>
+              <li>email <span class="schema-col-type">TEXT UNIQUE</span></li>
+              <li>role <span class="schema-col-type">TEXT</span></li>
+              <li>country <span class="schema-col-type">TEXT</span></li>
+              <li>salary <span class="schema-col-type">INTEGER</span></li>
+            </ul>
+          </div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">&#9654; orders</div>
+            <ul class="schema-col-list">
+              <li>id <span class="schema-col-type">INTEGER PK</span></li>
+              <li>user_id <span class="schema-col-type">INTEGER FK</span></li>
+              <li>product <span class="schema-col-type">TEXT</span></li>
+              <li>amount <span class="schema-col-type">REAL</span></li>
+              <li>status <span class="schema-col-type">TEXT</span></li>
+            </ul>
+          </div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">&#9654; products</div>
+            <ul class="schema-col-list">
+              <li>id <span class="schema-col-type">INTEGER PK</span></li>
+              <li>name <span class="schema-col-type">TEXT</span></li>
+              <li>price <span class="schema-col-type">REAL</span></li>
+              <li>category <span class="schema-col-type">TEXT</span></li>
+              <li>stock <span class="schema-col-type">INTEGER</span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- History -->
+        <div class="history-panel">
+          <div class="history-title">History</div>
+          <div id="history-sql"></div>
+        </div>
+      </div>
+      <!-- Right: Output -->
+      <div class="output-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">Results</span>
+          <div class="pane-actions">
+            <button class="btn btn-sm btn-ghost" data-copy-output="sql">Copy</button>
+          </div>
+        </div>
+        <div id="output-sql" class="output-body">
+          <div class="output-placeholder">&#9711; SQLite loading... click Run or press Ctrl+Enter</div>
+        </div>
+        <div class="exec-bar" id="execbar-sql">
+          <span class="exec-engine">SQLite WASM</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       MONGODB PANEL
+       ═══════════════════════════════════════ -->
+  <div class="editor-area hidden" data-engine-panel="mongo">
+    <div class="editor-layout">
+      <div class="editor-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">MongoDB Query</span>
+          <div class="pane-actions">
+            <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted)">Ctrl+Enter to run</span>
+            <button class="btn btn-sm btn-ghost" onclick="clearMongo()">Clear</button>
+            <button class="btn btn-sm btn-green" onclick="runMongo()">&#9654; Run</button>
+          </div>
+        </div>
+        <textarea id="editor-mongo" class="editor-textarea" spellcheck="false"
+          placeholder="// Collections: users, orders&#10;// Example: db.users.find({ role: 'admin' })&#10;// Ctrl+Enter to run"></textarea>
+        <div class="example-pills">
+          <span class="example-pill-label">Examples:</span>
+          <span class="example-pill" data-example="find"      data-engine-panel="mongo">find()</span>
+          <span class="example-pill" data-example="filter"    data-engine-panel="mongo">$filter</span>
+          <span class="example-pill" data-example="aggregate" data-engine-panel="mongo">aggregate()</span>
+          <span class="example-pill" data-example="update"    data-engine-panel="mongo">updateMany()</span>
+          <span class="example-pill" data-example="insert"    data-engine-panel="mongo">insertOne()</span>
+          <span class="example-pill" data-example="count"     data-engine-panel="mongo">$group count</span>
+        </div>
+        <div class="schema-sidebar">
+          <div class="schema-sidebar-title">Collections</div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">&#9654; users</div>
+            <ul class="schema-col-list">
+              <li>_id <span class="schema-col-type">String</span></li>
+              <li>name, email <span class="schema-col-type">String</span></li>
+              <li>role, country <span class="schema-col-type">String</span></li>
+              <li>salary <span class="schema-col-type">Number</span></li>
+              <li>tags <span class="schema-col-type">Array</span></li>
+            </ul>
+          </div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">&#9654; orders</div>
+            <ul class="schema-col-list">
+              <li>_id <span class="schema-col-type">String</span></li>
+              <li>userId <span class="schema-col-type">String (ref)</span></li>
+              <li>product, status <span class="schema-col-type">String</span></li>
+              <li>amount <span class="schema-col-type">Number</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-panel">
+          <div class="history-title">History</div>
+          <div id="history-mongo"></div>
+        </div>
+      </div>
+      <div class="output-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">Results</span>
+          <div class="pane-actions">
+            <button class="btn btn-sm btn-ghost" data-copy-output="mongo">Copy</button>
+          </div>
+        </div>
+        <div id="output-mongo" class="output-body">
+          <div class="output-placeholder">&#9711; Enter a MongoDB query and click Run</div>
+        </div>
+        <div class="exec-bar" id="execbar-mongo">
+          <span class="exec-engine">MongoDB Simulator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       REDIS PANEL
+       ═══════════════════════════════════════ -->
+  <div class="editor-area hidden" data-engine-panel="redis">
+    <div class="editor-layout">
+      <div class="editor-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">Redis Commands</span>
+          <div class="pane-actions">
+            <span style="font-family:var(--mono);font-size:0.62rem;color:var(--text-muted)">Ctrl+Enter to run</span>
+            <button class="btn btn-sm btn-ghost" onclick="clearRedis()">Clear</button>
+            <button class="btn btn-sm btn-green" onclick="runRedis()">&#9654; Run</button>
+          </div>
+        </div>
+        <textarea id="editor-redis" class="editor-textarea" spellcheck="false"
+          placeholder="# Enter Redis commands, one per line&#10;# Example: SET name 'DatabaseVerse'&#10;# Ctrl+Enter to run"></textarea>
+        <div class="example-pills">
+          <span class="example-pill-label">Examples:</span>
+          <span class="example-pill" data-example="strings" data-engine-panel="redis">Strings</span>
+          <span class="example-pill" data-example="hashes"  data-engine-panel="redis">Hashes</span>
+          <span class="example-pill" data-example="lists"   data-engine-panel="redis">Lists</span>
+          <span class="example-pill" data-example="sets"    data-engine-panel="redis">Sets</span>
+          <span class="example-pill" data-example="sorted"  data-engine-panel="redis">Sorted Sets</span>
+          <span class="example-pill" data-example="pubsub"  data-engine-panel="redis">Pub/Sub</span>
+        </div>
+        <div class="schema-sidebar">
+          <div class="schema-sidebar-title">Pre-seeded Keys</div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">Strings</div>
+            <ul class="schema-col-list">
+              <li>site:name <span class="schema-col-type">"DatabaseVerse"</span></li>
+              <li>counter:visits <span class="schema-col-type">"1042"</span></li>
+            </ul>
+          </div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">Hashes</div>
+            <ul class="schema-col-list">
+              <li>user:1 <span class="schema-col-type">name, role, score</span></li>
+              <li>user:2 <span class="schema-col-type">name, role, score</span></li>
+            </ul>
+          </div>
+          <div class="schema-table-item">
+            <div class="schema-table-name">Sorted Set</div>
+            <ul class="schema-col-list">
+              <li>leaderboard <span class="schema-col-type">alice/bob/carol</span></li>
+            </ul>
+          </div>
+        </div>
+        <div class="history-panel">
+          <div class="history-title">History</div>
+          <div id="history-redis"></div>
+        </div>
+      </div>
+      <div class="output-pane">
+        <div class="pane-topbar">
+          <span class="pane-title">Redis Output</span>
+          <div class="pane-actions">
+            <button class="btn btn-sm btn-ghost" data-copy-output="redis">Copy</button>
+          </div>
+        </div>
+        <div id="output-redis" class="output-body">
+          <div class="output-placeholder">&#9711; Enter Redis commands and click Run</div>
+        </div>
+        <div class="exec-bar" id="execbar-redis">
+          <span class="exec-engine">Redis Simulator</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- INFO CARDS -->
+  <div class="playground-info">
+    <div class="pg-info-card">
+      <span class="pg-info-icon">&#9679;</span>
+      <div class="pg-info-title">Real SQLite Engine</div>
+      <div class="pg-info-desc">SQL runs on actual SQLite compiled to WebAssembly via sql.js. Every SELECT, JOIN, CTE, window function, and DDL executes for real — not mocked.</div>
+    </div>
+    <div class="pg-info-card">
+      <span class="pg-info-icon">&#9679;</span>
+      <div class="pg-info-title">MongoDB Pipeline Simulator</div>
+      <div class="pg-info-desc">Supports find(), aggregate() with $match/$group/$sort/$project/$unwind/$addFields, updateMany(), insertOne(), countDocuments(), and distinct().</div>
+    </div>
+    <div class="pg-info-card">
+      <span class="pg-info-icon">&#9679;</span>
+      <div class="pg-info-title">Full Redis Command Set</div>
+      <div class="pg-info-desc">60+ commands across Strings, Hashes, Lists, Sets, Sorted Sets, and server commands. Pre-seeded data to experiment with immediately.</div>
+    </div>
+  </div>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<div class="newsletter-strip">
+  <h2>Stay Sharp on Databases</h2>
+  <p>One email per week. No spam.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email address" />
+    <button type="button">Subscribe</button>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="footer-left">© 2025 <a href="index.html">DatabaseVerse</a> &nbsp;·&nbsp; Built for engineers</div>
+  <ul class="footer-center">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener" title="X">𝕏</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener" title="LinkedIn">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener" title="GitHub">GH</a>
+  </div>
+</footer>
+<div id="toast"><span class="toast-icon">✓</span><span class="toast-msg"></span></div>
+
+<script>
+// ── Inline clear helpers ──
+function clearSql()   { document.getElementById('editor-sql').value='';   document.getElementById('output-sql').innerHTML='<div class="output-placeholder">&#9711; Editor cleared.</div>'; }
+function clearMongo() { document.getElementById('editor-mongo').value=''; document.getElementById('output-mongo').innerHTML='<div class="output-placeholder">&#9711; Editor cleared.</div>'; }
+function clearRedis() { document.getElementById('editor-redis').value=''; document.getElementById('output-redis').innerHTML='<div class="output-placeholder">&#9711; Editor cleared.</div>'; }
+</script>
+<script type="module">
+import { initNav, initNewsletter } from './js/nav.js';
+import { initPlayground, SQL_EXAMPLES, MONGO_EXAMPLES, REDIS_EXAMPLES } from './js/playground.js';
+
+initNav();
+initNewsletter();
+initPlayground();
+
+// Wire example pills
+document.querySelectorAll('.example-pill').forEach(pill => {
+  pill.addEventListener('click', () => {
+    const key    = pill.dataset.example;
+    const panel  = pill.dataset.enginePanel;
+    const maps   = { sql: SQL_EXAMPLES, mongo: MONGO_EXAMPLES, redis: REDIS_EXAMPLES };
+    const el     = document.getElementById(`editor-${panel}`);
+    if (el && maps[panel]?.[key]) { el.value = maps[panel][key]; el.focus(); }
+  });
+});
+</script>
+</body>
+</html>
+    

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Database Glossary, Interview Prep, Benchmarks & Migration Guides — DatabaseVerse</title>
+<meta name="description" content="Master database concepts with 30+ glossary terms, 15 interview Q&As from easy to hard, live performance benchmarks, and step-by-step migration guides between databases." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://www.databaseverse.com/learn.html" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/base.css" />
+<link rel="stylesheet" href="css/learn.css" />
+<style>
+  .skip-link{position:absolute;left:-9999px;top:0;z-index:999;background:var(--cyan);color:var(--bg);padding:.5rem 1rem;border-radius:0 0 8px 0;font-size:.85rem;font-weight:600;}
+  .skip-link:focus{left:0;}
+</style>
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to main content</a>
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html"><span class="logo-dot"></span>Database<span>Verse</span></a>
+  <ul class="nav-pages" id="navPages">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html" class="active">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="playground.html" class="nav-cta">Playground</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<div class="page-wrap" id="main-content">
+
+  <div class="learn-hero">
+    <h1>Learn <span style="color:var(--cyan)">Databases</span></h1>
+    <p>Glossary, interview prep, benchmarks, and migration guides. Everything you need to go from curious to confident.</p>
+  </div>
+
+  <!-- TABS -->
+  <div class="learn-tabs" role="tablist">
+    <button class="learn-tab active" data-section="section-glossary"   role="tab">Glossary</button>
+    <button class="learn-tab"        data-section="section-iqa"        role="tab">Interview Q&amp;A</button>
+    <button class="learn-tab"        data-section="section-benchmarks" role="tab">Benchmarks</button>
+    <button class="learn-tab"        data-section="section-migration"  role="tab">Migration Guides</button>
+  </div>
+
+  <!-- ═══════════════════════ GLOSSARY ═══════════════════════ -->
+  <section class="learn-section active" id="section-glossary" role="tabpanel">
+    <div class="glossary-search-bar">
+      <span class="glossary-search-icon">&#128269;</span>
+      <input type="text" id="glossarySearch" placeholder="Search terms... e.g. ACID, sharding, index" />
+    </div>
+    <div class="glossary-alpha-nav">
+      <button class="alpha-btn active" data-letter="All">All</button>
+      <button class="alpha-btn" data-letter="A">A</button>
+      <button class="alpha-btn" data-letter="B">B</button>
+      <button class="alpha-btn" data-letter="C">C</button>
+      <button class="alpha-btn" data-letter="D">D</button>
+      <button class="alpha-btn" data-letter="E">E</button>
+      <button class="alpha-btn" data-letter="F">F</button>
+      <button class="alpha-btn" data-letter="G">G</button>
+      <button class="alpha-btn" data-letter="H">H</button>
+      <button class="alpha-btn" data-letter="I">I</button>
+      <button class="alpha-btn" data-letter="J">J</button>
+      <button class="alpha-btn" data-letter="M">M</button>
+      <button class="alpha-btn" data-letter="N">N</button>
+      <button class="alpha-btn" data-letter="O">O</button>
+      <button class="alpha-btn" data-letter="P">P</button>
+      <button class="alpha-btn" data-letter="R">R</button>
+      <button class="alpha-btn" data-letter="S">S</button>
+      <button class="alpha-btn" data-letter="V">V</button>
+      <button class="alpha-btn" data-letter="W">W</button>
+      <button class="alpha-btn" data-letter="X">X</button>
+    </div>
+    <div class="glossary-grid" id="glossaryGrid"></div>
+  </section>
+
+  <!-- ═══════════════════════ INTERVIEW Q&A ═══════════════════════ -->
+  <section class="learn-section" id="section-iqa" role="tabpanel">
+    <div class="iqa-toolbar">
+      <div class="iqa-filters">
+        <button class="iqa-filter active" data-filter="All">All</button>
+        <button class="iqa-filter" data-filter="Easy">Easy</button>
+        <button class="iqa-filter" data-filter="Medium">Medium</button>
+        <button class="iqa-filter" data-filter="Hard">Hard</button>
+      </div>
+      <input type="text" class="iqa-search" id="iqaSearch" placeholder="Search questions..." />
+      <span style="font-family:var(--mono);font-size:.72rem;color:var(--text-muted);margin-left:auto">Click question to expand</span>
+    </div>
+    <div class="iqa-grid" id="iqaGrid"></div>
+  </section>
+
+  <!-- ═══════════════════════ BENCHMARKS ═══════════════════════ -->
+  <section class="learn-section" id="section-benchmarks" role="tabpanel">
+    <p class="section-subtitle" style="margin-bottom:2rem">
+      Representative performance benchmarks on equivalent hardware. Numbers reflect typical production workloads — always benchmark your specific access patterns.
+    </p>
+    <div class="bench-grid" id="benchGrid"></div>
+  </section>
+
+  <!-- ═══════════════════════ MIGRATION GUIDES ═══════════════════════ -->
+  <section class="learn-section" id="section-migration" role="tabpanel">
+    <p class="section-subtitle" style="margin-bottom:2rem">
+      Step-by-step migration paths between popular databases. Difficulty ratings reflect schema and query translation complexity, not data volume.
+    </p>
+    <div class="migration-grid" id="migrationGrid"></div>
+  </section>
+
+</div><!-- /page-wrap -->
+
+<!-- FOOTER -->
+<div class="newsletter-strip">
+  <h2>Stay Sharp on Databases</h2>
+  <p>One email per week. No spam.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email" />
+    <button type="button">Subscribe</button>
+  </div>
+</div>
+<footer class="site-footer">
+  <div class="footer-left">© 2025 <a href="index.html">DatabaseVerse</a></div>
+  <ul class="footer-center">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-socials">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener">𝕏</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener">GH</a>
+  </div>
+</footer>
+<div id="toast"><span class="toast-icon">&#10003;</span><span class="toast-msg"></span></div>
+
+<script type="module">
+import { initNav, initNewsletter } from './js/nav.js';
+import { initLearn } from './js/learn.js';
+initNav();
+initNewsletter();
+initLearn();
+</script>
+</body>
+</html>
