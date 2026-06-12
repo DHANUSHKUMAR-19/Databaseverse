@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Databases &mdash; Glossary, Interview Q&A, Benchmarks | DatabaseVerse</title>
+  <meta name="description" content="33-term database glossary, 15 interview questions from easy to hard, performance benchmarks across 6 databases, and 6 step-by-step migration guides." />
+  <link rel="canonical" href="https://www.databaseverse.com/learn.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/learn.css" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html">
+    <span class="logo-icon">D</span>
+    <span class="logo-text-main">Database</span><span class="logo-text-dim">Verse</span>
+  </a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html" class="active">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="playground.html" class="nav-pill">&#9654; Run Query</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap" id="main-content">
+
+  <header class="learn-hero">
+    <span class="section-label">Study Guide</span>
+    <h1>Learn databases <em style="color:var(--amber)">properly.</em></h1>
+    <p>Glossary, interview prep, honest benchmarks, and migration playbooks. Everything an engineer needs to go from curious to confident.</p>
+  </header>
+
+  <!-- LEARN TABS -->
+  <div class="learn-tabs" role="tablist" aria-label="Learning sections">
+    <button class="learn-tab active" data-section="sec-glossary" role="tab" aria-selected="true">Glossary (33)</button>
+    <button class="learn-tab"        data-section="sec-iqa"      role="tab">Interview Q&amp;A (15)</button>
+    <button class="learn-tab"        data-section="sec-bench"    role="tab">Benchmarks</button>
+    <button class="learn-tab"        data-section="sec-migrate"  role="tab">Migration Guides (6)</button>
+  </div>
+
+  <!-- GLOSSARY -->
+  <section class="learn-section active" id="sec-glossary" role="tabpanel" aria-label="Database glossary">
+    <div class="glossary-topbar">
+      <div class="glossary-search">
+        <span class="glossary-search-icon" aria-hidden="true">&#9740;</span>
+        <input type="search" id="glossarySearch" placeholder="Search terms..." aria-label="Search glossary" />
+      </div>
+      <div class="alpha-nav" role="group" aria-label="Filter by letter">
+        <button class="alpha-btn active" data-letter="">All</button>
+        <button class="alpha-btn" data-letter="A">A</button>
+        <button class="alpha-btn" data-letter="B">B</button>
+        <button class="alpha-btn" data-letter="C">C</button>
+        <button class="alpha-btn" data-letter="D">D</button>
+        <button class="alpha-btn" data-letter="E">E</button>
+        <button class="alpha-btn" data-letter="G">G</button>
+        <button class="alpha-btn" data-letter="H">H</button>
+        <button class="alpha-btn" data-letter="I">I</button>
+        <button class="alpha-btn" data-letter="J">J</button>
+        <button class="alpha-btn" data-letter="L">L</button>
+        <button class="alpha-btn" data-letter="M">M</button>
+        <button class="alpha-btn" data-letter="N">N</button>
+        <button class="alpha-btn" data-letter="O">O</button>
+        <button class="alpha-btn" data-letter="P">P</button>
+        <button class="alpha-btn" data-letter="Q">Q</button>
+        <button class="alpha-btn" data-letter="R">R</button>
+        <button class="alpha-btn" data-letter="S">S</button>
+        <button class="alpha-btn" data-letter="T">T</button>
+        <button class="alpha-btn" data-letter="U">U</button>
+        <button class="alpha-btn" data-letter="W">W</button>
+      </div>
+    </div>
+    <div class="glossary-grid" id="glossaryGrid" aria-live="polite"></div>
+  </section>
+
+  <!-- IQA -->
+  <section class="learn-section" id="sec-iqa" role="tabpanel" aria-label="Interview questions">
+    <div class="iqa-toolbar">
+      <div class="iqa-filters" role="group" aria-label="Filter by difficulty">
+        <button class="iqa-filter active" data-diff="">All (15)</button>
+        <button class="iqa-filter" data-diff="easy">Easy (5)</button>
+        <button class="iqa-filter" data-diff="medium">Medium (6)</button>
+        <button class="iqa-filter" data-diff="hard">Hard (4)</button>
+      </div>
+      <input class="iqa-search" id="iqaSearch" type="search" placeholder="Search questions..." aria-label="Search interview questions" />
+    </div>
+    <div class="iqa-grid" id="iqaGrid" aria-live="polite"></div>
+  </section>
+
+  <!-- BENCHMARKS -->
+  <section class="learn-section" id="sec-bench" role="tabpanel" aria-label="Performance benchmarks">
+    <p style="color:var(--text-2);font-size:.82rem;margin-bottom:2rem;max-width:620px;line-height:1.7">
+      These benchmarks are illustrative order-of-magnitude figures based on published vendor benchmarks and community testing. Actual performance depends heavily on hardware, configuration, query patterns, and data size. Always benchmark your own workload.
+    </p>
+    <div class="bench-grid" id="benchGrid"></div>
+  </section>
+
+  <!-- MIGRATIONS -->
+  <section class="learn-section" id="sec-migrate" role="tabpanel" aria-label="Migration guides">
+    <p style="color:var(--text-2);font-size:.82rem;margin-bottom:2rem;max-width:620px;line-height:1.7">
+      Step-by-step migration playbooks. Each guide covers schema conversion, data export/import, query rewriting, and validation. Difficulty reflects typical engineering effort.
+    </p>
+    <div class="migration-grid" id="migrationGrid"></div>
+  </section>
+
+</main>
+
+<section class="newsletter-strip">
+  <h2>Stay ahead of the stack</h2>
+  <p>Database deep dives, benchmarks, and engineering notes. One email a week.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email address" />
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-copy">&copy; 2025 <a href="index.html">DatabaseVerse</a> &mdash; built for engineers</div>
+  <ul class="footer-nav" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-social">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+    <a href="https://medium.com/@dhanushkumar19" target="_blank" rel="noopener" aria-label="Medium">M</a>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">&#10003;</span>
+  <span class="toast-msg"></span>
+</div>
+
+<script type="module">
+  import { initNav, initNewsletter } from './js/nav.js';
+  import { initLearn } from './js/learn.js';
+  initNav();
+  initNewsletter();
+  initLearn();
+</script>
+</body>
+</html>

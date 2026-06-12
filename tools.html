@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Developer Tools &mdash; Schema, Regex, JSONPath, Index Advisor | DatabaseVerse</title>
+  <meta name="description" content="6 free database developer tools: Schema Designer with DDL generation, Connection String Builder, Regex Tester, JSON Path Evaluator, Data Type Cheatsheet, and Index Advisor." />
+  <link rel="canonical" href="https://www.databaseverse.com/tools.html" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/tools.css" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html">
+    <span class="logo-icon">D</span>
+    <span class="logo-text-main">Database</span><span class="logo-text-dim">Verse</span>
+  </a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html" class="active">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="playground.html" class="nav-pill">&#9654; Run Query</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap" id="main-content">
+
+  <header class="tools-hero">
+    <span class="section-label">Developer Tools</span>
+    <h1>6 tools. Zero setup. <em style="color:var(--amber)">Ship faster.</em></h1>
+    <p>Schema designer, connection string builder, regex tester, JSONPath evaluator, data type cheatsheet, and an index advisor. All in the browser.</p>
+  </header>
+
+  <!-- TOOL NAV -->
+  <div class="tool-nav" role="tablist" aria-label="Developer tools">
+    <button class="tool-nav-btn active" data-tool="tool-schema"    role="tab" aria-selected="true">
+      <span class="tool-nav-icon">&#9638;</span> Schema Designer
+    </button>
+    <button class="tool-nav-btn" data-tool="tool-connstr"  role="tab">
+      <span class="tool-nav-icon">&#128279;</span> Connection Builder
+    </button>
+    <button class="tool-nav-btn" data-tool="tool-regex"    role="tab">
+      <span class="tool-nav-icon">.*</span> Regex Tester
+    </button>
+    <button class="tool-nav-btn" data-tool="tool-jsonpath" role="tab">
+      <span class="tool-nav-icon">{ }</span> JSON Path
+    </button>
+    <button class="tool-nav-btn" data-tool="tool-datatypes" role="tab">
+      <span class="tool-nav-icon">&#128202;</span> Data Types
+    </button>
+    <button class="tool-nav-btn" data-tool="tool-indexadv" role="tab">
+      <span class="tool-nav-icon">&#128270;</span> Index Advisor
+    </button>
+  </div>
+
+  <!-- ── 1. SCHEMA DESIGNER ── -->
+  <div class="tool-panel active" id="tool-schema" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">&#9638;</div>
+        <div>
+          <h2>Schema Designer</h2>
+          <p>Add columns, choose types, and generate CREATE TABLE DDL for PostgreSQL, MySQL, or SQLite. Includes auto-timestamp triggers.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">Table definition</div>
+          <label class="field-label">Table name</label>
+          <input class="field-input" id="schTable" type="text" value="users" placeholder="table_name" style="margin-bottom:1rem" />
+
+          <label class="field-label">Dialect</label>
+          <select class="field-select" id="schDialect" style="margin-bottom:1rem">
+            <option value="postgres">PostgreSQL</option>
+            <option value="mysql">MySQL</option>
+            <option value="sqlite">SQLite</option>
+          </select>
+
+          <div class="schema-checks" style="margin-bottom:1.25rem">
+            <label class="schema-check"><input type="checkbox" id="schIne" checked onchange="window.genDDL()"> IF NOT EXISTS</label>
+            <label class="schema-check"><input type="checkbox" id="schTs"  onchange=""> Auto timestamps</label>
+          </div>
+
+          <label class="field-label">Columns</label>
+          <div id="schFields" style="margin-bottom:1rem"></div>
+
+          <button class="btn btn-md btn-ghost" onclick="window.addField()" style="width:100%">+ Add column</button>
+        </div>
+
+        <div class="tool-col">
+          <div class="tool-col-title">Generated DDL</div>
+          <div class="code-pane" style="height:100%;min-height:320px">
+            <div class="code-pane-bar">
+              <div class="code-pane-dots"><span class="dot-r"></span><span class="dot-y"></span><span class="dot-g"></span></div>
+              <span class="code-pane-lang">SQL</span>
+              <button class="code-pane-copy" id="copyDDLBtn" onclick="window.copyDDL()">copy</button>
+            </div>
+            <div class="code-pane-body" id="schemaOutput"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 2. CONNECTION STRING BUILDER ── -->
+  <div class="tool-panel" id="tool-connstr" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">&#128279;</div>
+        <div>
+          <h2>Connection String Builder</h2>
+          <p>Generate connection strings and framework code snippets for PostgreSQL, MySQL, MongoDB, Redis, and SQL Server.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">Connection details</div>
+          <div class="conn-form">
+            <div>
+              <label class="field-label">Database</label>
+              <select class="field-select" id="connDB">
+                <option value="postgres">PostgreSQL</option>
+                <option value="mysql">MySQL</option>
+                <option value="mongodb">MongoDB</option>
+                <option value="redis">Redis</option>
+                <option value="mssql">SQL Server</option>
+              </select>
+            </div>
+            <div class="conn-row">
+              <div style="flex:1">
+                <label class="field-label">Host</label>
+                <input class="field-input" id="connHost" type="text" value="localhost" />
+              </div>
+              <div class="conn-port">
+                <label class="field-label">Port</label>
+                <input class="field-input" id="connPort" type="text" value="5432" />
+              </div>
+            </div>
+            <div>
+              <label class="field-label">Database name</label>
+              <input class="field-input" id="connName" type="text" value="mydb" />
+            </div>
+            <div class="conn-row">
+              <div style="flex:1">
+                <label class="field-label">Username</label>
+                <input class="field-input" id="connUser" type="text" value="postgres" />
+              </div>
+              <div style="flex:1">
+                <label class="field-label">Password</label>
+                <input class="field-input" id="connPass" type="password" value="password" />
+              </div>
+            </div>
+            <label class="schema-check"><input type="checkbox" id="connSSL"> Enable SSL / TLS</label>
+          </div>
+        </div>
+
+        <div class="tool-col">
+          <div class="tool-col-title">Connection string</div>
+          <div class="conn-display" id="connDisplay" aria-live="polite"></div>
+          <button class="btn btn-sm btn-ghost" onclick="window.copyConn()" style="margin-top:.75rem">Copy string</button>
+          <div class="conn-snippets" id="connSnippets"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 3. REGEX TESTER ── -->
+  <div class="tool-panel" id="tool-regex" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">.*</div>
+        <div>
+          <h2>Regex Tester</h2>
+          <p>Live regex matching with syntax highlighting, match list, and flag support. Common presets included.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">Pattern</div>
+          <div class="regex-input-wrap" style="margin-bottom:1rem">
+            <span class="regex-slash">/</span>
+            <input class="regex-main" id="regexPattern" type="text" placeholder="[A-Z]\w+" aria-label="Regex pattern" spellcheck="false" />
+            <span class="regex-slash">/</span>
+            <input class="regex-flags" id="regexFlags" type="text" value="g" maxlength="6" aria-label="Regex flags" spellcheck="false" />
+          </div>
+
+          <div class="tool-col-title">Common presets</div>
+          <div class="regex-presets">
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('[a-zA-Z0-9._%+\\-]+@[a-zA-Z0-9.\\-]+\\.[a-zA-Z]{2,}','g')">Email</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('https?:\\/\\/[\\w\\-]+(\\.[\\w\\-]+)+([\\w\\-.,@?^=%&:/~+#]*[\\w\\-@?^=%&/~+#])?','g')">URL</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('^\\+?[1-9]\\d{1,14}$','g')">Phone (E.164)</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}','g')">UUID</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('\\b(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\b','g')">IP v4</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setRegex('SELECT.*FROM\\s+(\\w+)','gi')">SQL SELECT</button>
+          </div>
+
+          <div class="tool-col-title">Match list</div>
+          <div class="regex-list" id="regexMatches" aria-live="polite"></div>
+          <div class="regex-stats" id="regexStats" aria-live="polite"></div>
+        </div>
+
+        <div class="tool-col">
+          <div class="tool-col-title">Test string (matches highlighted live)</div>
+          <textarea
+            class="field-textarea"
+            id="regexTest"
+            rows="6"
+            spellcheck="false"
+            placeholder="Paste or type your test string here..."
+            style="margin-bottom:1rem;font-family:var(--font-mono)"
+          >alice@example.com, bob@corp.io
+Visit https://databaseverse.com for more
+UUID: f47ac10b-58cc-4372-a567-0e02b2c3d479
+SELECT name FROM users WHERE id = 42;</textarea>
+          <div class="tool-col-title">Live highlight</div>
+          <div class="regex-test" id="regexHighlight" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 4. JSON PATH ── -->
+  <div class="tool-panel" id="tool-jsonpath" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">{ }</div>
+        <div>
+          <h2>JSON Path Evaluator</h2>
+          <p>Evaluate JSONPath expressions with wildcard, filter, deep scan, and array slice support.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="tool-col-title">JSON input</div>
+          <textarea
+            class="field-textarea"
+            id="jsonInput"
+            rows="14"
+            spellcheck="false"
+            style="font-family:var(--font-mono);font-size:.76rem;margin-bottom:1rem"
+          ></textarea>
+          <div class="json-path-bar">
+            <label class="field-label" style="margin:0;width:90px;flex-shrink:0">JSONPath</label>
+            <input class="field-input" id="jsonPath" type="text" placeholder="$.users[*].name" style="font-family:var(--font-mono)" aria-label="JSONPath expression" spellcheck="false" />
+          </div>
+          <div class="json-path-presets">
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$')">$ (root)</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$.users[*].name')">All names</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$.users[0]')">First user</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$.users[?(@.role==&quot;admin&quot;)]')">Admins only</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$.users[*].scores[-1:]')">Last score</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$..scores')">Deep: scores</button>
+            <button class="btn btn-sm btn-ghost" onclick="window.setJsonPath('$.meta')">Meta</button>
+          </div>
+        </div>
+
+        <div class="tool-col">
+          <div class="tool-col-title">Highlighted JSON</div>
+          <div class="json-ta" id="jsonDisplay" aria-live="polite"></div>
+          <div class="tool-col-title" style="margin-top:1.25rem">Result</div>
+          <div class="json-result" id="jsonPathResult" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 5. DATA TYPES ── -->
+  <div class="tool-panel" id="tool-datatypes" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">&#128202;</div>
+        <div>
+          <h2>Data Type Cheatsheet</h2>
+          <p>Range, storage size, and notes for every data type in PostgreSQL, MySQL, and SQLite.</p>
+        </div>
+      </div>
+      <div class="tool-body single">
+        <div class="tool-col">
+          <div class="dt-tabs" role="tablist" aria-label="Database dialect">
+            <button class="dt-tab active" data-dialect="postgres" role="tab">PostgreSQL</button>
+            <button class="dt-tab"        data-dialect="mysql"    role="tab">MySQL</button>
+            <button class="dt-tab"        data-dialect="sqlite"   role="tab">SQLite</button>
+          </div>
+          <div id="dtTable" aria-live="polite"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 6. INDEX ADVISOR ── -->
+  <div class="tool-panel" id="tool-indexadv" role="tabpanel">
+    <div class="tool-card">
+      <div class="tool-head">
+        <div class="tool-head-icon">&#128270;</div>
+        <div>
+          <h2>Index Advisor</h2>
+          <p>Paste a SQL query and get index recommendations, anti-pattern warnings, and covering index suggestions.</p>
+        </div>
+      </div>
+      <div class="tool-body">
+        <div class="tool-col">
+          <div class="advisor-form">
+            <div>
+              <label class="field-label">SQL query</label>
+              <textarea
+                class="field-textarea"
+                id="advQuery"
+                rows="8"
+                spellcheck="false"
+                placeholder="SELECT u.name, COUNT(o.id)&#10;FROM users u&#10;LEFT JOIN orders o ON o.user_id = u.id&#10;WHERE u.country = 'US'&#10;ORDER BY u.name;"
+                style="font-family:var(--font-mono)"
+              ></textarea>
+            </div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem">
+              <div>
+                <label class="field-label">Table name (for generated SQL)</label>
+                <input class="field-input" id="advTable" type="text" value="users" />
+              </div>
+              <div>
+                <label class="field-label">Dialect</label>
+                <select class="field-select" id="advDialect">
+                  <option value="postgres">PostgreSQL</option>
+                  <option value="mysql">MySQL</option>
+                  <option value="sqlite">SQLite</option>
+                </select>
+              </div>
+            </div>
+            <button class="btn btn-md btn-amber" id="advBtn">&#128270; Analyze Query</button>
+          </div>
+        </div>
+
+        <div class="tool-col">
+          <div class="tool-col-title">Recommendations</div>
+          <div class="advisor-result" id="advResult" aria-live="polite">
+            <div style="color:var(--text-3);font-family:var(--font-mono);font-size:.78rem">Paste a SQL query and click Analyze.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<section class="newsletter-strip">
+  <h2>Stay ahead of the stack</h2>
+  <p>Database deep dives, benchmarks, and engineering notes. One email a week.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email address" />
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-copy">&copy; 2025 <a href="index.html">DatabaseVerse</a> &mdash; built for engineers</div>
+  <ul class="footer-nav" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-social">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+    <a href="https://medium.com/@dhanushkumar19" target="_blank" rel="noopener" aria-label="Medium">M</a>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">&#10003;</span>
+  <span class="toast-msg"></span>
+</div>
+
+<script type="module">
+  import { initNav, initNewsletter } from './js/nav.js';
+  import { initToolNav, initSchemaDesigner, initConnBuilder, initRegexTester, initJsonPath, initDataTypes, initIndexAdvisor } from './js/tools.js';
+  initNav();
+  initNewsletter();
+  initToolNav();
+  initSchemaDesigner();
+  initConnBuilder();
+  initRegexTester();
+  initJsonPath();
+  initDataTypes();
+  initIndexAdvisor();
+</script>
+</body>
+</html>

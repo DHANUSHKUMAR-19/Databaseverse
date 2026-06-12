@@ -1,0 +1,25 @@
+<!--
+  components/nav.html
+  Paste into every page inside <body>.
+  Set class="active" on the matching <a> per page.
+-->
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html">
+    <span class="logo-icon">D</span>
+    <span class="logo-text-main">Database</span><span class="logo-text-dim">Verse</span>
+  </a>
+
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+
+  <div class="nav-right">
+    <a href="playground.html" class="nav-pill">&#9654; Run Query</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>

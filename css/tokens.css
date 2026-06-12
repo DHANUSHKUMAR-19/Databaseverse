@@ -1,0 +1,98 @@
+/* ═══════════════════════════════════════════════════
+   DatabaseVerse — tokens.css
+   Single source of truth for all design decisions
+   ═══════════════════════════════════════════════════ */
+:root {
+  /* ── Core palette ── */
+  --bg:         #080c14;
+  --bg-1:       #0d1120;
+  --bg-2:       #111827;
+  --bg-3:       #1a2236;
+  --bg-4:       #1e2a40;
+  --bg-5:       #243048;
+
+  /* ── Signature amber accent ── */
+  --amber:      #f59e0b;
+  --amber-dim:  #d97706;
+  --amber-pale: rgba(245,158,11,0.12);
+  --amber-glow: rgba(245,158,11,0.18);
+
+  /* ── Secondary teal ── */
+  --teal:       #14b8a6;
+  --teal-dim:   #0d9488;
+  --teal-pale:  rgba(20,184,166,0.10);
+
+  /* ── Status colors ── */
+  --green:      #22c55e;
+  --green-pale: rgba(34,197,94,0.12);
+  --red:        #f87171;
+  --red-pale:   rgba(248,113,113,0.12);
+  --purple:     #a78bfa;
+  --purple-pale:rgba(167,139,250,0.12);
+  --blue:       #60a5fa;
+  --blue-pale:  rgba(96,165,250,0.12);
+  --orange:     #fb923c;
+  --orange-pale:rgba(251,146,60,0.12);
+  --pink:       #f472b6;
+  --pink-pale:  rgba(244,114,182,0.12);
+
+  /* ── Category accent borders ── */
+  --cat-sql:        #22c55e;
+  --cat-nosql:      #a78bfa;
+  --cat-graph:      #f59e0b;
+  --cat-vector:     #60a5fa;
+  --cat-timeseries: #f87171;
+  --cat-newsql:     #14b8a6;
+  --cat-embedded:   #fb923c;
+
+  /* ── Text ── */
+  --text:       #f1f5f9;
+  --text-2:     #94a3b8;
+  --text-3:     #64748b;
+  --text-4:     #334155;
+
+  /* ── Borders ── */
+  --border:     rgba(255,255,255,0.06);
+  --border-2:   rgba(255,255,255,0.10);
+  --border-amb: rgba(245,158,11,0.25);
+
+  /* ── Typography ── */
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body:    'Space Grotesk', sans-serif;
+  --font-mono:    'Fira Code', monospace;
+
+  /* ── Spacing scale ── */
+  --s-1: 0.25rem;
+  --s-2: 0.5rem;
+  --s-3: 0.75rem;
+  --s-4: 1rem;
+  --s-5: 1.25rem;
+  --s-6: 1.5rem;
+  --s-8: 2rem;
+  --s-10: 2.5rem;
+  --s-12: 3rem;
+  --s-16: 4rem;
+  --s-20: 5rem;
+  --s-24: 6rem;
+
+  /* ── Radius ── */
+  --r-sm: 6px;
+  --r-md: 10px;
+  --r-lg: 14px;
+  --r-xl: 20px;
+  --r-2xl:28px;
+
+  /* ── Shadows ── */
+  --shadow-sm:  0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md:  0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg:  0 8px 32px rgba(0,0,0,0.6);
+  --shadow-amb: 0 0 32px rgba(245,158,11,0.12);
+
+  /* ── Motion ── */
+  --t-fast: 0.12s ease;
+  --t:      0.2s ease;
+  --t-slow: 0.4s ease;
+
+  /* ── Nav ── */
+  --nav-h: 60px;
+}

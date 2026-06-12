@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 &mdash; Row Not Found | DatabaseVerse</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <style>
+    .err-page {
+      min-height: 100vh; display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 2rem;
+      position: relative; overflow: hidden;
+    }
+    .err-page::before {
+      content: ''; position: fixed; inset: 0; z-index: 0; pointer-events: none;
+      background: radial-gradient(ellipse at 50% 40%, rgba(245,158,11,0.06) 0%, transparent 60%);
+    }
+    .err-content { position: relative; z-index: 1; max-width: 600px; }
+    .err-code {
+      font-family: var(--font-mono); font-size: clamp(5rem, 15vw, 10rem);
+      font-weight: 700; color: var(--amber); line-height: 1;
+      letter-spacing: -0.05em; margin-bottom: 0;
+    }
+    .err-query {
+      background: var(--bg-2); border: 1px solid var(--border-amb);
+      border-radius: var(--r-lg); padding: 1.25rem 1.75rem;
+      font-family: var(--font-mono); font-size: 0.82rem;
+      text-align: left; margin: 1.5rem 0 2rem; line-height: 1.9;
+    }
+    .err-title { font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 700; letter-spacing: -0.03em; margin-bottom: 0.75rem; }
+    .err-sub   { color: var(--text-2); font-size: 0.9rem; margin-bottom: 2rem; line-height: 1.7; }
+    .err-actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
+  </style>
+</head>
+<body>
+
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html">
+    <span class="logo-icon">D</span>
+    <span class="logo-text-main">Database</span><span class="logo-text-dim">Verse</span>
+  </a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap err-page">
+  <div class="err-content">
+    <div class="err-code">404</div>
+    <h1 class="err-title">Row Not Found</h1>
+    <p class="err-sub">
+      The query returned 0 rows. This page has been deleted, moved, or never committed.
+    </p>
+    <div class="err-query" aria-label="SQL query illustration">
+      <span class="t-kw">SELECT</span> page<br>
+      <span class="t-kw">FROM</span>   databaseverse<br>
+      <span class="t-kw">WHERE</span>  url = <span class="t-str">'<span id="err-path">/404</span>'</span>;<br>
+      <br>
+      <span class="t-cm">-- ERROR: 0 rows returned</span><br>
+      <span class="t-cm">-- HINT:  Check the URL or go home</span>
+    </div>
+    <div class="err-actions">
+      <a href="index.html"      class="btn btn-lg btn-amber">Back to home</a>
+      <a href="playground.html" class="btn btn-lg btn-ghost">Open Playground</a>
+      <a href="learn.html"      class="btn btn-lg btn-ghost">Study Guide</a>
+    </div>
+  </div>
+</main>
+
+<div id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">&#10003;</span>
+  <span class="toast-msg"></span>
+</div>
+
+<script type="module">
+  import { initNav } from './js/nav.js';
+  initNav();
+  const pathEl = document.getElementById('err-path');
+  if (pathEl) pathEl.textContent = location.pathname || '/404';
+</script>
+</body>
+</html>

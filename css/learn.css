@@ -1,0 +1,150 @@
+/* ═══════════════════════════════════════════════════
+   learn.css — Glossary · Q&A · Benchmarks · Migrations
+   ═══════════════════════════════════════════════════ */
+
+.learn-hero { padding:5rem var(--s-8) 2rem; text-align:center; }
+.learn-hero h1 { font-size:clamp(1.8rem,3.5vw,2.8rem); font-weight:700; letter-spacing:-0.04em; margin-bottom:var(--s-3); }
+.learn-hero p  { font-size:0.95rem; color:var(--text-2); max-width:460px; margin:0 auto; line-height:1.7; }
+
+/* ── LEARN TABS ── */
+.learn-tabs {
+  display:flex; gap:0; padding:0 var(--s-8);
+  max-width:1320px; margin:0 auto;
+  border-bottom:1px solid var(--border);
+}
+.learn-tab {
+  background:none; border:none; border-bottom:2px solid transparent;
+  padding:0.75rem var(--s-5); font-size:0.88rem; font-weight:600;
+  color:var(--text-2); cursor:pointer; transition:all var(--t); margin-bottom:-1px;
+  font-family:var(--font-body);
+}
+.learn-tab:hover  { color:var(--text); }
+.learn-tab.active { color:var(--amber); border-bottom-color:var(--amber); }
+
+/* ── LEARN SECTIONS ── */
+.learn-section { display:none; max-width:1320px; margin:var(--s-8) auto; padding:0 var(--s-8) var(--s-20); }
+.learn-section.active { display:block; }
+
+/* ── GLOSSARY ── */
+.glossary-topbar { display:flex; gap:var(--s-4); margin-bottom:var(--s-5); flex-wrap:wrap; align-items:center; }
+.glossary-search { position:relative; flex:1; max-width:400px; }
+.glossary-search input {
+  width:100%; background:var(--bg-3); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:0.65rem var(--s-4) 0.65rem 2.6rem;
+  font-size:0.88rem; font-family:var(--font-body); color:var(--text);
+  outline:none; transition:border-color var(--t);
+}
+.glossary-search input:focus { border-color:var(--amber-dim); }
+.glossary-search input::placeholder { color:var(--text-3); }
+.glossary-search-icon { position:absolute; left:0.9rem; top:50%; transform:translateY(-50%); color:var(--text-3); pointer-events:none; }
+.alpha-nav { display:flex; gap:var(--s-1); flex-wrap:wrap; }
+.alpha-btn {
+  background:var(--bg-3); border:1px solid var(--border); border-radius:var(--r-sm);
+  padding:0.22rem 0.55rem; font-family:var(--font-mono); font-size:0.7rem; color:var(--text-2);
+  cursor:pointer; transition:all var(--t);
+}
+.alpha-btn:hover, .alpha-btn.active { border-color:var(--border-amb); color:var(--amber); background:var(--amber-pale); }
+
+.glossary-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-4); }
+.gterm {
+  background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r-lg);
+  padding:var(--s-5); transition:border-color var(--t); cursor:default;
+}
+.gterm:hover { border-color:var(--border-2); }
+.gterm-word { font-family:var(--font-mono); font-size:0.84rem; font-weight:700; color:var(--amber); margin-bottom:var(--s-2); }
+.gterm-def  { font-size:0.81rem; color:var(--text-2); line-height:1.7; }
+.gterm-tags { display:flex; gap:var(--s-1); margin-top:var(--s-3); flex-wrap:wrap; }
+.gterm-tag  { background:var(--bg-3); border-radius:var(--r-sm); padding:0.12rem 0.45rem; font-size:0.6rem; color:var(--text-3); font-family:var(--font-mono); }
+
+/* ── INTERVIEW Q&A ── */
+.iqa-toolbar { display:flex; gap:var(--s-3); margin-bottom:var(--s-6); flex-wrap:wrap; align-items:center; }
+.iqa-filters { display:flex; gap:var(--s-2); flex-wrap:wrap; }
+.iqa-filter {
+  background:var(--bg-3); border:1px solid var(--border); border-radius:var(--r-sm);
+  padding:0.32rem 0.85rem; font-size:0.76rem; font-family:var(--font-mono);
+  color:var(--text-2); cursor:pointer; transition:all var(--t); user-select:none;
+}
+.iqa-filter.active, .iqa-filter:hover { border-color:var(--border-amb); color:var(--amber); background:var(--amber-pale); }
+.iqa-search {
+  background:var(--bg-3); border:1px solid var(--border); border-radius:var(--r-sm);
+  padding:0.32rem 0.85rem; font-size:0.82rem; font-family:var(--font-body);
+  color:var(--text); outline:none; transition:border-color var(--t); width:220px;
+}
+.iqa-search:focus { border-color:var(--amber-dim); }
+.iqa-search::placeholder { color:var(--text-3); }
+
+.iqa-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-4); }
+.iqa-card {
+  background:var(--bg-2); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden; transition:border-color var(--t);
+}
+.iqa-card:hover  { border-color:var(--border-2); }
+.iqa-card.hidden { display:none; }
+
+.iqa-q {
+  padding:var(--s-4) var(--s-5); font-size:0.87rem; font-weight:600;
+  cursor:pointer; display:flex; align-items:flex-start; gap:var(--s-3); line-height:1.5;
+}
+.iqa-num {
+  font-family:var(--font-mono); font-size:0.6rem; color:var(--amber);
+  background:var(--amber-pale); border:1px solid var(--border-amb);
+  border-radius:var(--r-sm); padding:0.12rem 0.4rem; flex-shrink:0; margin-top:0.15rem;
+}
+.iqa-chevron { margin-left:auto; color:var(--text-3); flex-shrink:0; transition:transform var(--t); }
+.iqa-card.open .iqa-chevron { transform:rotate(180deg); }
+.iqa-a {
+  display:none; padding:0 var(--s-5) var(--s-5);
+  font-size:0.81rem; color:var(--text-2); line-height:1.75;
+  border-top:1px solid var(--border); padding-top:var(--s-4);
+}
+.iqa-card.open .iqa-a { display:block; }
+
+/* ── BENCHMARKS ── */
+.bench-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-6); }
+.bench-card { background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r-xl); padding:var(--s-6); }
+.bench-title { font-size:0.92rem; font-weight:700; margin-bottom:var(--s-1); letter-spacing:-0.01em; }
+.bench-desc  { font-size:0.76rem; color:var(--text-2); margin-bottom:var(--s-5); line-height:1.55; }
+.bench-rows  { display:flex; flex-direction:column; gap:var(--s-3); }
+.bench-row   { display:flex; align-items:center; gap:var(--s-4); }
+.bench-label { font-family:var(--font-mono); font-size:0.68rem; color:var(--text-2); width:130px; flex-shrink:0; }
+.bench-track { flex:1; background:var(--bg-4); border-radius:100px; height:7px; overflow:hidden; }
+.bench-fill  { height:100%; border-radius:100px; background:var(--amber); width:0%; transition:width 1.2s cubic-bezier(0.22,1,0.36,1); }
+.bench-val   { font-family:var(--font-mono); font-size:0.67rem; color:var(--text-3); width:90px; text-align:right; flex-shrink:0; }
+
+/* ── MIGRATIONS ── */
+.migration-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:var(--s-5); }
+.migration-card {
+  background:var(--bg-2); border:1px solid var(--border); border-radius:var(--r-xl);
+  overflow:hidden; transition:border-color var(--t), transform var(--t);
+}
+.migration-card:hover { border-color:var(--border-2); transform:translateY(-2px); }
+.migration-head {
+  padding:var(--s-5) var(--s-6); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; gap:var(--s-3);
+}
+.migration-dbs  { font-size:0.95rem; font-weight:700; }
+.migration-arrow { color:var(--amber); font-size:1.2rem; }
+.migration-diff { font-family:var(--font-mono); font-size:0.6rem; padding:0.18rem 0.5rem; border-radius:4px; margin-left:auto; }
+.diff-easy   { background:var(--green-pale);  color:var(--green);  }
+.diff-medium { background:var(--orange-pale); color:var(--orange); }
+.diff-hard   { background:var(--red-pale);    color:var(--red);    }
+
+.migration-body { padding:var(--s-5) var(--s-6); }
+.migration-step { display:flex; gap:var(--s-3); align-items:flex-start; font-size:0.8rem; color:var(--text-2); line-height:1.6; margin-bottom:var(--s-3); }
+.step-num {
+  font-family:var(--font-mono); font-size:0.62rem; color:var(--amber);
+  background:var(--amber-pale); border:1px solid var(--border-amb);
+  border-radius:50%; width:20px; height:20px; min-width:20px;
+  display:flex; align-items:center; justify-content:center; margin-top:0.15rem;
+}
+.migration-cmd { background:var(--bg); border:1px solid var(--border); border-radius:var(--r-sm); padding:0.22rem 0.6rem; font-family:var(--font-mono); font-size:0.72rem; color:var(--green); margin-top:var(--s-2); display:block; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:860px) {
+  .glossary-grid  { grid-template-columns:1fr; }
+  .iqa-grid       { grid-template-columns:1fr; }
+  .bench-grid     { grid-template-columns:1fr; }
+  .migration-grid { grid-template-columns:1fr; }
+  .learn-tabs     { overflow-x:auto; scrollbar-width:none; }
+  .learn-tabs::-webkit-scrollbar { display:none; }
+}

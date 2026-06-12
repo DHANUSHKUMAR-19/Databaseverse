@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DatabaseVerse — The Developer's Database Atlas</title>
+  <meta name="description" content="Explore 24 databases side by side. Compare SQL, NoSQL, Graph, Vector, Time-Series, NewSQL, and Embedded databases with live code snippets, a decision quiz, and use-case guides." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://www.databaseverse.com/" />
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://www.databaseverse.com/" />
+  <meta property="og:title"       content="DatabaseVerse — The Developer's Database Atlas" />
+  <meta property="og:description" content="Explore 24 databases side by side with live code snippets, comparator, and use-case guides." />
+  <meta name="twitter:card"       content="summary_large_image" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Fira+Code:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/home.css" />
+</head>
+<body>
+
+<a href="#main-content" class="skip-link">Skip to content</a>
+
+<!-- NAV -->
+<nav class="site-nav" aria-label="Main navigation">
+  <a class="nav-logo" href="index.html">
+    <span class="logo-icon">D</span>
+    <span class="logo-text-main">Database</span><span class="logo-text-dim">Verse</span>
+  </a>
+  <ul class="nav-links" id="navLinks" role="list">
+    <li><a href="index.html" class="active">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="nav-right">
+    <a href="playground.html" class="nav-pill">&#9654; Run Query</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">&#9776;</button>
+  </div>
+</nav>
+
+<main class="page-wrap" id="main-content">
+
+  <!-- HERO -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-lines" aria-hidden="true">
+      <div class="hero-line"></div>
+      <div class="hero-line"></div>
+      <div class="hero-line"></div>
+      <div class="hero-line"></div>
+    </div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <span class="hero-eyebrow-dot" aria-hidden="true"></span>
+        24 databases &nbsp;&#183;&nbsp; 7 categories &nbsp;&#183;&nbsp; live code
+      </div>
+      <h1>
+        Every database<br>
+        <em>you'll ever need</em><br>
+        <span class="dim">in one place</span>
+      </h1>
+      <p class="hero-sub">
+        Compare SQL, NoSQL, Graph, Vector, Time-Series, NewSQL, and Embedded databases side by side. With real syntax, honest trade-offs, and a quiz to find your perfect fit.
+      </p>
+      <div class="hero-actions">
+        <a href="#databases" class="btn btn-lg btn-amber">Explore databases</a>
+        <a href="playground.html" class="btn btn-lg btn-ghost">Open Playground</a>
+      </div>
+
+      <!-- Search -->
+      <div class="search-wrap" role="search">
+        <span class="search-count" id="searchCount" aria-live="polite"></span>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search databases, use cases, query languages..."
+          aria-label="Search databases"
+          style="padding-left: 3rem"
+        />
+        <span class="search-icon" aria-hidden="true">&#9740;</span>
+      </div>
+
+      <!-- Category pills -->
+      <div class="cat-pills" role="group" aria-label="Filter by category">
+        <button class="cat-pill active" data-cat="All">All (24)</button>
+        <button class="cat-pill" data-cat="SQL">SQL</button>
+        <button class="cat-pill" data-cat="NoSQL">NoSQL</button>
+        <button class="cat-pill" data-cat="Graph">Graph</button>
+        <button class="cat-pill" data-cat="Vector">Vector</button>
+        <button class="cat-pill" data-cat="Time-Series">Time-Series</button>
+        <button class="cat-pill" data-cat="NewSQL">NewSQL</button>
+        <button class="cat-pill" data-cat="Embedded">Embedded</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS STRIP -->
+  <div class="stats-strip" aria-label="Key statistics">
+    <div class="stat"><span class="stat-num">24</span><div class="stat-label">Databases covered</div></div>
+    <div class="stat"><span class="stat-num">7</span><div class="stat-label">Categories</div></div>
+    <div class="stat"><span class="stat-num">3</span><div class="stat-label">Live query engines</div></div>
+    <div class="stat"><span class="stat-num">6</span><div class="stat-label">Dev tools</div></div>
+    <div class="stat"><span class="stat-num">33</span><div class="stat-label">Glossary terms</div></div>
+    <div class="stat"><span class="stat-num">15</span><div class="stat-label">Interview questions</div></div>
+  </div>
+
+  <!-- DATABASE SECTIONS -->
+  <section class="section" id="databases" aria-label="All databases">
+    <div class="container">
+
+      <!-- SQL -->
+      <div class="cat-section" id="section-sql">
+        <div class="cat-section-header">
+          <div class="cat-section-bar sql" aria-hidden="true"></div>
+          <h2 class="cat-section-name">SQL &mdash; Relational</h2>
+          <span class="cat-section-count">6 databases</span>
+        </div>
+        <div class="db-grid" id="grid-sql" role="list" aria-label="SQL databases"></div>
+      </div>
+
+      <!-- NoSQL -->
+      <div class="cat-section" id="section-nosql">
+        <div class="cat-section-header">
+          <div class="cat-section-bar nosql" aria-hidden="true"></div>
+          <h2 class="cat-section-name">NoSQL &mdash; Non-Relational</h2>
+          <span class="cat-section-count">6 databases</span>
+        </div>
+        <div class="db-grid" id="grid-nosql" role="list" aria-label="NoSQL databases"></div>
+      </div>
+
+      <!-- Graph -->
+      <div class="cat-section" id="section-graph">
+        <div class="cat-section-header">
+          <div class="cat-section-bar graph" aria-hidden="true"></div>
+          <h2 class="cat-section-name">Graph</h2>
+          <span class="cat-section-count">3 databases</span>
+        </div>
+        <div class="db-grid" id="grid-graph" role="list" aria-label="Graph databases"></div>
+      </div>
+
+      <!-- Vector -->
+      <div class="cat-section" id="section-vector">
+        <div class="cat-section-header">
+          <div class="cat-section-bar vector" aria-hidden="true"></div>
+          <h2 class="cat-section-name">Vector &mdash; AI-Native Search</h2>
+          <span class="cat-section-count">3 databases</span>
+        </div>
+        <div class="db-grid" id="grid-vector" role="list" aria-label="Vector databases"></div>
+      </div>
+
+      <!-- Time-Series -->
+      <div class="cat-section" id="section-timeseries">
+        <div class="cat-section-header">
+          <div class="cat-section-bar timeseries" aria-hidden="true"></div>
+          <h2 class="cat-section-name">Time-Series</h2>
+          <span class="cat-section-count">2 databases</span>
+        </div>
+        <div class="db-grid" id="grid-timeseries" role="list" aria-label="Time-Series databases"></div>
+      </div>
+
+      <!-- NewSQL -->
+      <div class="cat-section" id="section-newsql">
+        <div class="cat-section-header">
+          <div class="cat-section-bar newsql" aria-hidden="true"></div>
+          <h2 class="cat-section-name">NewSQL &mdash; Distributed Relational</h2>
+          <span class="cat-section-count">2 databases</span>
+        </div>
+        <div class="db-grid" id="grid-newsql" role="list" aria-label="NewSQL databases"></div>
+      </div>
+
+      <!-- Embedded -->
+      <div class="cat-section" id="section-embedded">
+        <div class="cat-section-header">
+          <div class="cat-section-bar embedded" aria-hidden="true"></div>
+          <h2 class="cat-section-name">Embedded &amp; In-Process</h2>
+          <span class="cat-section-count">2 databases</span>
+        </div>
+        <div class="db-grid" id="grid-embedded" role="list" aria-label="Embedded databases"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- COMPARATOR -->
+  <section class="comparator-outer" id="comparator" aria-label="Database comparator">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <span class="section-label">Comparator</span>
+        <h2 class="section-title">Head-to-head comparison</h2>
+        <p class="section-sub" style="margin:0 auto">Pick any two databases and see every dimension side by side.</p>
+      </div>
+      <div class="compare-selects">
+        <div class="cmp-select-wrap">
+          <select id="compareA" aria-label="First database to compare"></select>
+        </div>
+        <div class="vs-chip" aria-hidden="true">VS</div>
+        <div class="cmp-select-wrap">
+          <select id="compareB" aria-label="Second database to compare"></select>
+        </div>
+      </div>
+      <div id="compareResult" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section" aria-label="Database recommendation quiz">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:2.5rem">
+        <span class="section-label">Decision Helper</span>
+        <h2 class="section-title">Which database fits your project?</h2>
+        <p class="section-sub" style="margin:0 auto">Answer 4 questions and we'll recommend the right database for your use case.</p>
+      </div>
+      <div id="quizBody" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <!-- USE CASES -->
+  <section class="section compact" style="background:var(--bg-1);border-top:1px solid var(--border)" aria-label="Database use cases">
+    <div class="container">
+      <div style="margin-bottom:2.5rem">
+        <span class="section-label">Use Cases</span>
+        <h2 class="section-title">What are you building?</h2>
+        <p class="section-sub">The right database depends on your workload. Here is what each use case calls for.</p>
+      </div>
+      <div class="uc-grid" id="usecaseGrid" aria-label="Use case recommendations"></div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section compact" aria-label="Call to action">
+    <div class="container" style="text-align:center">
+      <span class="section-label">Get hands-on</span>
+      <h2 class="section-title">Query it yourself</h2>
+      <p class="section-sub" style="margin:0 auto var(--s-8)">Run real SQL against SQLite, simulate MongoDB aggregation pipelines, and test 60+ Redis commands in the browser. No setup required.</p>
+      <div style="display:flex;gap:var(--s-3);justify-content:center;flex-wrap:wrap">
+        <a href="playground.html" class="btn btn-lg btn-amber">Open Playground</a>
+        <a href="tools.html"      class="btn btn-lg btn-ghost">Developer Tools</a>
+        <a href="learn.html"      class="btn btn-lg btn-ghost">Study Guide</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- NEWSLETTER + FOOTER -->
+<section class="newsletter-strip" aria-label="Newsletter">
+  <h2>Stay ahead of the stack</h2>
+  <p>Database deep dives, benchmarks, and engineering notes. One email a week.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="you@company.com" aria-label="Email address" />
+    <button type="button">Subscribe</button>
+  </div>
+</section>
+
+<footer class="site-footer" role="contentinfo">
+  <div class="footer-copy">
+    &copy; 2025 <a href="index.html">DatabaseVerse</a> &mdash; built for engineers
+  </div>
+  <ul class="footer-nav" role="list">
+    <li><a href="index.html">Databases</a></li>
+    <li><a href="playground.html">Playground</a></li>
+    <li><a href="tools.html">Tools</a></li>
+    <li><a href="learn.html">Learn</a></li>
+  </ul>
+  <div class="footer-social">
+    <a href="https://x.com/dhanushbangady" target="_blank" rel="noopener" aria-label="Twitter">X</a>
+    <a href="https://www.linkedin.com/in/dhanush-kumar-609387221/" target="_blank" rel="noopener" aria-label="LinkedIn">in</a>
+    <a href="https://github.com/DHANUSHKUMAR-19" target="_blank" rel="noopener" aria-label="GitHub">GH</a>
+    <a href="https://medium.com/@dhanushkumar19" target="_blank" rel="noopener" aria-label="Medium">M</a>
+  </div>
+</footer>
+
+<div id="toast" role="status" aria-live="polite">
+  <span class="toast-icon">&#10003;</span>
+  <span class="toast-msg"></span>
+</div>
+
+<script type="module">
+  import { initNav, initNewsletter } from './js/nav.js';
+  import { initCards, initSearch, initComparator, initQuiz, initUseCases } from './js/home.js';
+  initNav();
+  initNewsletter();
+  initCards();
+  initSearch();
+  initComparator();
+  initQuiz();
+  initUseCases();
+</script>
+</body>
+</html>
